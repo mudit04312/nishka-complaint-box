@@ -2,106 +2,129 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Nishka's Complaint Box 🎀</title>
   <link href="https://fonts.googleapis.com/css2?family=Princess+Sofia&family=Open+Sans&family=Schoolbell&display=swap" rel="stylesheet">
   <style>
-  * {
-    box-sizing: border-box;
-  }
-  body {
-    background-color: #ffe6f0;
-    font-family: 'Open Sans', sans-serif;
-    margin: 0;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  h1 {
-    color: #ff69b4;
-    font-family: 'Princess Sofia', cursive;
-    font-size: 3.5rem;
-    text-align: center;
-    margin: 20px 0;
-  }
-
-  .complaint-box {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #fff0f5;
-    border: 2px solid #ff69b4;
-    padding: 20px;
-    border-radius: 20px;
-    width: 100%;
-    max-width: 400px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-  }
-
-  textarea {
-    width: 100%;
-    height: 100px;
-    border: 2px solid #ffb6c1;
-    border-radius: 10px;
-    padding: 10px;
-    font-size: 1rem;
-    resize: none;
-    font-family: 'Open Sans', sans-serif;
-  }
-
-  textarea::placeholder {
-    font-family: 'Schoolbell', cursive;
-    font-size: 1.1rem;
-    color: #999;
-  }
-
-  button {
-    margin-top: 15px;
-    padding: 10px 20px;
-    background-color: #ff69b4;
-    border: none;
-    border-radius: 10px;
-    color: white;
-    font-size: 1rem;
-    cursor: pointer;
-  }
-
-  button:hover {
-    background-color: #ff85c1;
-  }
-
-  @media screen and (max-width: 480px) {
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      background-color: #ffe6f0;
+      font-family: 'Open Sans', sans-serif;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
     h1 {
-      font-size: 2rem;
+      color: #ff69b4;
+      font-family: 'Princess Sofia', cursive;
+      font-size: 3.5rem;
+      text-align: center;
+      margin: 20px 0;
     }
-
     .complaint-box {
-      padding: 15px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: #fff0f5;
+      border: 2px solid #ff69b4;
+      padding: 20px;
+      border-radius: 20px;
+      width: 100%;
+      max-width: 400px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     }
-
     textarea {
-      font-size: 0.95rem;
-    }
-
-    textarea::placeholder {
-      font-size: 0.95rem;
-    }
-
-    button {
-      font-size: 0.95rem;
+      width: 100%;
+      height: 100px;
+      border: 2px solid #ffb6c1;
+      border-radius: 10px;
       padding: 10px;
+      font-size: 1rem;
+      resize: none;
+      font-family: 'Open Sans', sans-serif;
     }
-  }
-</style>
+    textarea::placeholder {
+      font-family: 'Schoolbell', cursive;
+      font-size: 1.1rem;
+      color: #999;
+    }
+    button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      background-color: #ff69b4;
+      border: none;
+      border-radius: 10px;
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #ff85c1;
+    }
+    #mute-toggle {
+      margin-top: 10px;
+      background-color: transparent;
+      border: none;
+      font-size: 1.2rem;
+      color: #ff69b4;
+      cursor: pointer;
+    }
+    @media screen and (max-width: 480px) {
+      h1 {
+        font-size: 2rem;
+      }
+      .complaint-box {
+        padding: 15px;
+      }
+      textarea {
+        font-size: 0.95rem;
+      }
+      button {
+        font-size: 0.95rem;
+        padding: 10px;
+      }
+    }
+  </style>
 </head>
 <body>
   <h1>Nishka's Complaint Box</h1>
-  
   <form class="complaint-box" method="POST" action="https://formspree.io/f/YOUR_FORM_ID">
-    <textarea name="complaint" placeholder="Type your royal complaint, princess <3" required></textarea>
+    <textarea name="complaint" placeholder="Type your royal complaint here, princess <3" required></textarea>
     <button type="submit">🤬📤</button>
   </form>
+  <button id="mute-toggle">🔇 Toggle Music</button>
+  <audio id="bg-audio" autoplay></audio>
+  <script>
+    const songs = [
+      "https://dl.dropboxusercontent.com/scl/fi/d7fhsnuinvk2hdexfqrml/Connie-Francis-Pretty-Little-Baby-Official-Audio.mp3?rlkey=k1kyk3s6vfieqgr5itpvw4w7v",
+      "https://dl.dropboxusercontent.com/scl/fi/ab1yk30e5p01eh2gm3fqq/FNAF-Security-Breach-OST_-Daycare-Theme.mp3?rlkey=671ecd6rmk1i3pqvjhtbrs7od",
+      "https://dl.dropboxusercontent.com/scl/fi/xae54vgewwtzfdldounrs/blue-instrumental.mp3?rlkey=zv8a7m723obj6i8k18giproxe",
+      "https://dl.dropboxusercontent.com/scl/fi/u9a3obvxmcu8onrswsbmj/the-cat-from-ipanema.mp3?rlkey=sku5g7zeie5jfrbv85ux31cxr",
+      "https://dl.dropboxusercontent.com/scl/fi/1KF02wcoKUV1nb3zfIIyOgksfvC-9on5G/tsundere.mp3?rlkey=dummylink" 
+    ];
+
+    const audio = document.getElementById('bg-audio');
+    const muteBtn = document.getElementById('mute-toggle');
+
+    function playRandomSong() {
+      const randomIndex = Math.floor(Math.random() * songs.length);
+      audio.src = songs[randomIndex];
+      audio.play();
+    }
+
+    audio.addEventListener('ended', playRandomSong);
+    audio.addEventListener('error', playRandomSong);
+
+    muteBtn.addEventListener('click', () => {
+      audio.muted = !audio.muted;
+      muteBtn.textContent = audio.muted ? '🔈 Unmute Music' : '🔇 Mute Music';
+    });
+
+    window.onload = playRandomSong;
+  </script>
 </body>
 </html>
