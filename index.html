@@ -4,93 +4,98 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Nishka's Complaint Box 🎀</title>
-  <link href="https://fonts.googleapis.com/css2?family=Princess+Sofia&display=swap" rel="stylesheet">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Princess+Sofia&family=Open+Sans&display=swap" rel="stylesheet">
+
   <style>
-  * {
-    box-sizing: border-box;
-  }
-  body {
-  background-image: url('https://www.transparenttextures.com/patterns/pink-rose.png');
-  background-color: #ffe6f0; /* fallback color */
-  background-repeat: repeat;
-  background-size: auto;
-  font-family: 'Open Sans', sans-serif;
-  margin: 0;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-    
-h1 {
-    color: #ff69b4;
-    font-family: 'Princess Sofia', cursive;
-    font-size: 2.5rem;
-    text-align: center;
-    margin: 20px 0;
-  }
+    * {
+      box-sizing: border-box;
+    }
 
-  .complaint-box {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #fff0f5;
-    border: 2px dashed #ff69b4;
-    padding: 20px;
-    border-radius: 20px;
-    width: 100%;
-    max-width: 400px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-  }
+    body {
+      background-image: url('https://www.transparenttextures.com/patterns/pink-rose.png');
+      background-color: #ffe6f0;
+      background-repeat: repeat;
+      background-size: auto;
+      font-family: 'Open Sans', sans-serif;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
 
-  textarea {
-    width: 100%;
-    height: 100px;
-    border: 2px solid #ffb6c1;
-    border-radius: 10px;
-    padding: 10px;
-    font-size: 1rem;
-    resize: none;
-  }
-
-  button {
-    margin-top: 15px;
-    padding: 10px 20px;
-    background-color: #ff69b4;
-    border: none;
-    border-radius: 10px;
-    color: white;
-    font-size: 1rem;
-    cursor: pointer;
-  }
-
-  button:hover {
-    background-color: #ff85c1;
-  }
-
-  @media screen and (max-width: 480px) {
     h1 {
-      font-size: 2rem;
+      color: #ff69b4;
+      font-family: 'Princess Sofia', cursive;
+      font-size: 2.7rem;
+      text-align: center;
+      margin: 20px 0 30px;
     }
 
     .complaint-box {
-      padding: 15px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: #fff0f5;
+      border: 2px dashed #ff69b4;
+      padding: 20px;
+      border-radius: 20px;
+      width: 100%;
+      max-width: 400px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     }
 
     textarea {
-      font-size: 0.95rem;
+      width: 100%;
+      height: 100px;
+      border: 2px solid #ffb6c1;
+      border-radius: 10px;
+      padding: 10px;
+      font-size: 1rem;
+      resize: none;
     }
 
     button {
-      font-size: 0.95rem;
-      padding: 10px;
+      margin-top: 15px;
+      padding: 10px 20px;
+      background-color: #ff69b4;
+      border: none;
+      border-radius: 10px;
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
     }
-  }
-</style>
+
+    button:hover {
+      background-color: #ff85c1;
+    }
+
+    @media screen and (max-width: 480px) {
+      h1 {
+        font-size: 2rem;
+      }
+
+      .complaint-box {
+        padding: 15px;
+      }
+
+      textarea {
+        font-size: 0.95rem;
+      }
+
+      button {
+        font-size: 0.95rem;
+        padding: 10px;
+      }
+    }
+  </style>
 </head>
 <body>
   <h1>Nishka's Complaint Box</h1>
-  
+
   <form class="complaint-box" method="POST" action="https://formspree.io/f/YOUR_FORM_ID">
     <textarea name="complaint" placeholder="Type your royal complaint here, princess <3" required></textarea>
     <button type="submit">Submit 📤</button>
