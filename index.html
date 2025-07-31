@@ -2,115 +2,108 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Nishka's Complaint Box</title>
   <style>
     body {
-      font-family: 'Comic Sans MS', cursive, sans-serif;
       background-color: #ffe6f0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 30px 10px;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      text-align: center;
+      padding: 50px 20px;
       margin: 0;
     }
 
     h1 {
-      color: #ff4da6;
-      font-size: 2.2rem;
-      margin-bottom: 10px;
+      color: #ff66b2;
+      font-size: 2.5em;
     }
 
     .complaint-box {
-      background-color: #ffccdd;
-      border: 2px solid #ff99c8;
-      border-radius: 15px;
+      background-color: #ffe6f9;
+      border: 3px solid #ff99cc;
+      border-radius: 20px;
       padding: 20px;
-      width: 90%;
-      max-width: 400px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      display: inline-block;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+      max-width: 90%;
+      margin: 0 auto;
     }
 
     textarea {
       width: 100%;
-      height: 100px;
-      border-radius: 10px;
-      border: 1px solid #ff99c8;
-      padding: 10px;
-      font-size: 16px;
+      height: 120px;
+      padding: 15px;
+      border: 2px solid #ff99cc;
+      border-radius: 12px;
+      font-size: 1em;
       resize: none;
-      font-family: inherit;
+      background-color: #fff0f5;
     }
 
     button {
-      background-color: #ff4da6;
+      margin-top: 15px;
+      padding: 12px 24px;
+      background-color: #ff66b2;
       color: white;
+      font-size: 1em;
       border: none;
-      border-radius: 10px;
-      padding: 10px 20px;
-      margin-top: 10px;
-      font-size: 1rem;
+      border-radius: 12px;
       cursor: pointer;
+      transition: background-color 0.3s;
     }
 
-    #toggle-sound {
+    button:hover {
+      background-color: #ff3385;
+    }
+
+    .speaker {
       position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: none;
-      border: none;
-      font-size: 1.8rem;
+      bottom: 10px;
+      right: 10px;
+      font-size: 32px;
       cursor: pointer;
-    }
-
-    textarea, input, button {
-      font-size: 16px; /* Prevent zoom on mobile */
     }
   </style>
 </head>
 <body>
-
   <h1>Nishka's Complaint Box</h1>
-
   <div class="complaint-box">
-    <textarea placeholder="Type your royal complaint here, princess <3"></textarea>
+    <textarea placeholder="Type your royal complaint here, princess <3"></textarea><br>
     <button>😡📤</button>
   </div>
 
-  <button id="toggle-sound">🔊</button>
+  <div class="speaker" onclick="toggleMusic()">🔊</div>
 
-  <audio id="bg-audio" autoplay muted loop></audio>
+  <audio id="bg-music" autoplay loop>
+    <source src="https://www.dropbox.com/scl/fi/xae54vgewwtzfdldounrs/blue-instrumental.mp3?rlkey=zv8a7m723obj6i8k18giproxe&raw=1" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
 
   <script>
-    const audio = document.getElementById('bg-audio');
-    const toggleButton = document.getElementById('toggle-sound');
-
-    const songs = [
-      "music/blue-instrumental.mp3",
-      "music/Connie-Francis-Pretty-Little-Baby.mp3",
-      "music/FNAF-Security-Breach-Daycare.mp3",
-      "music/the-cat-from-ipanema.mp3",
-      "music/AGuLphmr0emwup3bCwYXq20.mp3"
+    const playlist = [
+      'https://www.dropbox.com/scl/fi/xae54vgewwtzfdldounrs/blue-instrumental.mp3?rlkey=zv8a7m723obj6i8k18giproxe&raw=1',
+      'https://www.dropbox.com/scl/fi/d7fhsnuinvk2hdexfqrml/Connie-Francis-Pretty-Little-Baby-Official-Audio.mp3?rlkey=k1kyk3s6vfieqgr5itpvw4w7v&raw=1',
+      'https://www.dropbox.com/scl/fi/ab1yk30e5p01eh2gm3fqq/FNAF-Security-Breach-OST_-Daycare-Theme.mp3?rlkey=671ecd6rmk1i3pqvjhtbrs7od&raw=1',
+      'https://www.dropbox.com/scl/fi/u9a3obvxmcu8onrswsbmj/the-cat-from-ipanema.mp3?rlkey=sku5g7zeie5jfrbv85ux31cxr&raw=1',
+      'https://www.dropbox.com/scl/fo/efery0eqf07zf014xm0v2/AGuLphmr0emwup3bCwYXq20?rlkey=ob2366i4yq42powjenw63mxm1&raw=1'
     ];
 
-    function playRandomSong() {
-      const random = songs[Math.floor(Math.random() * songs.length)];
-      audio.src = random;
-      audio.play().catch(() => {});
+    let current = 0;
+    const music = document.getElementById('bg-music');
+
+    music.addEventListener('ended', () => {
+      current = (current + 1) % playlist.length;
+      music.src = playlist[current];
+      music.play();
+    });
+
+    function toggleMusic() {
+      if (music.paused) {
+        music.play();
+      } else {
+        music.pause();
+      }
     }
-
-    window.addEventListener('load', () => {
-      playRandomSong();
-      setTimeout(() => {
-        audio.muted = false;
-        audio.play().catch(() => {});
-      }, 500);
-    });
-
-    toggleButton.addEventListener('click', () => {
-      audio.muted = !audio.muted;
-      toggleButton.textContent = audio.muted ? '🔇' : '🔊';
-    });
   </script>
 </body>
 </html>
