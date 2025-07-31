@@ -19,6 +19,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      position: relative;
     }
 
     h1 {
@@ -29,16 +30,39 @@
       margin: 20px 0;
     }
 
+    .complaint-wrapper {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      max-width: 420px;
+    }
+
+    .heart {
+      position: absolute;
+      font-size: 1.5rem;
+      color: #ff69b4;
+      pointer-events: none;
+    }
+
+    .heart.tl { top: -10px; left: -10px; }
+    .heart.tr { top: -10px; right: -10px; }
+    .heart.bl { bottom: -10px; left: -10px; }
+    .heart.br { bottom: -10px; right: -10px; }
+    .heart.tm { top: -10px; left: 50%; transform: translateX(-50%); }
+    .heart.bm { bottom: -10px; left: 50%; transform: translateX(-50%); }
+    .heart.ml { top: 50%; left: -10px; transform: translateY(-50%); }
+    .heart.mr { top: 50%; right: -10px; transform: translateY(-50%); }
+
     .complaint-box {
       display: flex;
       flex-direction: column;
       align-items: center;
       background-color: #fff0f5;
-      border: 2px dashed #ff69b4;
       padding: 20px;
       border-radius: 20px;
       width: 100%;
-      max-width: 400px;
       box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     }
 
@@ -89,10 +113,23 @@
 </head>
 <body>
   <h1>Nishka's Complaint Box</h1>
-  
-  <form class="complaint-box" method="POST" action="https://formspree.io/f/YOUR_FORM_ID">
-    <textarea name="complaint" placeholder="Type your royal complaint here, princess <3" required></textarea>
-    <button type="submit">Submit 📤</button>
-  </form>
+
+  <div class="complaint-wrapper">
+    <!-- Decorative hearts -->
+    <div class="heart tl">❤️</div>
+    <div class="heart tr">❤️</div>
+    <div class="heart bl">❤️</div>
+    <div class="heart br">❤️</div>
+    <div class="heart tm">❤️</div>
+    <div class="heart bm">❤️</div>
+    <div class="heart ml">❤️</div>
+    <div class="heart mr">❤️</div>
+
+    <!-- Complaint box -->
+    <form class="complaint-box" method="POST" action="https://formspree.io/f/YOUR_FORM_ID">
+      <textarea name="complaint" placeholder="Type your royal complaint here, princess <3" required></textarea>
+      <button type="submit">Submit 📤</button>
+    </form>
+  </div>
 </body>
 </html>
