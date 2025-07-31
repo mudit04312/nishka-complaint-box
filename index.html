@@ -4,17 +4,15 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Nishka's Complaint Box 🎀</title>
-
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Princess+Sofia&family=Open+Sans&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Princess+Sofia&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
   <style>
     * {
       box-sizing: border-box;
     }
 
     body {
-      background-image: url('https://www.toptal.com/designers/subtlepatterns/uploads/pink_rice.png');
+      background-image: url('https://i.imgur.com/Hy6gCux.png'); /* CUTE pattern that works */
       background-color: #ffe6f0;
       background-repeat: repeat;
       background-size: auto;
@@ -24,15 +22,14 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      min-height: 100vh;
     }
 
     h1 {
       color: #ff69b4;
       font-family: 'Princess Sofia', cursive;
-      font-size: 2.7rem;
+      font-size: 2.5rem;
       text-align: center;
-      margin: 20px 0 30px;
+      margin: 20px 0;
     }
 
     .complaint-box {
@@ -95,7 +92,7 @@
 </head>
 <body>
   <h1>Nishka's Complaint Box</h1>
-
+  
   <form class="complaint-box" method="POST" action="https://formspree.io/f/YOUR_FORM_ID">
     <textarea name="complaint" placeholder="Type your royal complaint here, princess <3" required></textarea>
     <button type="submit">Submit 📤</button>
