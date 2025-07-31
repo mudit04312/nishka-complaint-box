@@ -2,119 +2,115 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
-  <title>Nishka's Complaint Box 🎀</title>
-  <link href="https://fonts.googleapis.com/css2?family=Princess+Sofia&family=Schoolbell&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Nishka's Complaint Box</title>
   <style>
     body {
+      font-family: 'Comic Sans MS', cursive, sans-serif;
       background-color: #ffe6f0;
-      font-family: 'Schoolbell', cursive;
-      margin: 0;
-      padding: 20px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      zoom: 1;
+      padding: 30px 10px;
+      margin: 0;
     }
+
     h1 {
-      font-family: 'Princess Sofia', cursive;
-      color: #ff69b4;
-      font-size: 3.5rem;
-      margin-bottom: 20px;
-      text-align: center;
+      color: #ff4da6;
+      font-size: 2.2rem;
+      margin-bottom: 10px;
     }
+
     .complaint-box {
-      background-color: #fff0f5;
-      border: 2px solid #ff69b4;
-      border-radius: 20px;
+      background-color: #ffccdd;
+      border: 2px solid #ff99c8;
+      border-radius: 15px;
       padding: 20px;
-      width: 100%;
+      width: 90%;
       max-width: 400px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     }
+
     textarea {
       width: 100%;
       height: 100px;
-      padding: 10px;
       border-radius: 10px;
-      border: 2px solid #ffb6c1;
-      font-family: 'Open Sans', sans-serif;
+      border: 1px solid #ff99c8;
+      padding: 10px;
+      font-size: 16px;
+      resize: none;
+      font-family: inherit;
     }
-    textarea::placeholder {
-      font-family: 'Schoolbell', cursive;
-      font-size: 1.1rem;
-      color: #999;
-    }
+
     button {
-      margin-top: 15px;
-      padding: 10px 20px;
-      background-color: #ff69b4;
+      background-color: #ff4da6;
+      color: white;
       border: none;
       border-radius: 10px;
-      color: white;
+      padding: 10px 20px;
+      margin-top: 10px;
       font-size: 1rem;
       cursor: pointer;
     }
+
     #toggle-sound {
-      margin-top: 20px;
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
       background: none;
       border: none;
-      font-size: 1.5rem;
+      font-size: 1.8rem;
       cursor: pointer;
-      color: #ff69b4;
     }
-    @media (max-width: 480px) {
-      h1 {
-        font-size: 2rem;
-      }
+
+    textarea, input, button {
+      font-size: 16px; /* Prevent zoom on mobile */
     }
   </style>
 </head>
 <body>
 
-<h1>Nishka's Complaint Box</h1>
+  <h1>Nishka's Complaint Box</h1>
 
-<form class="complaint-box" method="POST" action="#">
-  <textarea name="complaint" placeholder="Type your royal complaint here, princess <3" required></textarea>
-  <button type="submit">🤬📤</button>
-</form>
+  <div class="complaint-box">
+    <textarea placeholder="Type your royal complaint here, princess <3"></textarea>
+    <button>😡📤</button>
+  </div>
 
-<button id="toggle-sound">🔊</button>
+  <button id="toggle-sound">🔊</button>
 
-<audio id="bg-audio" autoplay preload="auto"></audio>
+  <audio id="bg-audio" autoplay muted loop></audio>
 
-<script>
-  const audio = document.getElementById('bg-audio');
-  const toggleButton = document.getElementById('toggle-sound');
+  <script>
+    const audio = document.getElementById('bg-audio');
+    const toggleButton = document.getElementById('toggle-sound');
 
-  const songs = [
-    'https://www.dropbox.com/scl/fi/d7fhsnuinvk2hdexfqrml/Connie-Francis-Pretty-Little-Baby-Official-Audio.mp3?rlkey=k1kyk3s6vfieqgr5itpvw4w7v&raw=1',
-    'https://www.dropbox.com/scl/fi/ab1yk30e5p01eh2gm3fqq/FNAF-Security-Breach-OST_-Daycare-Theme.mp3?rlkey=671ecd6rmk1i3pqvjhtbrs7od&raw=1',
-    'https://www.dropbox.com/scl/fi/xae54vgewwtzfdldounrs/blue-instrumental.mp3?rlkey=zv8a7m723obj6i8k18giproxe&raw=1',
-    'https://www.dropbox.com/scl/fi/u9a3obvxmcu8onrswsbmj/the-cat-from-ipanema.mp3?rlkey=sku5g7zeie5jfrbv85ux31cxr&raw=1',
-    'https://www.dropbox.com/scl/fi/1KF02wcoKUV1nb3zfIIyOgksfvC-9on5G/tsundere.mp3?rlkey=z3o2zzrjnpw8n5khgg1h8j1d8&raw=1'
-  ];
+    const songs = [
+      "music/blue-instrumental.mp3",
+      "music/Connie-Francis-Pretty-Little-Baby.mp3",
+      "music/FNAF-Security-Breach-Daycare.mp3",
+      "music/the-cat-from-ipanema.mp3",
+      "music/AGuLphmr0emwup3bCwYXq20.mp3"
+    ];
 
-  let isMuted = false;
+    function playRandomSong() {
+      const random = songs[Math.floor(Math.random() * songs.length)];
+      audio.src = random;
+      audio.play().catch(() => {});
+    }
 
-  function playRandomSong() {
-    const randomIndex = Math.floor(Math.random() * songs.length);
-    audio.src = songs[randomIndex];
-    audio.play().catch(() => {});
-  }
+    window.addEventListener('load', () => {
+      playRandomSong();
+      setTimeout(() => {
+        audio.muted = false;
+        audio.play().catch(() => {});
+      }, 500);
+    });
 
-  audio.addEventListener('ended', playRandomSong);
-
-  toggleButton.addEventListener('click', () => {
-    isMuted = !isMuted;
-    audio.muted = isMuted;
-    toggleButton.textContent = isMuted ? '🔇' : '🔊';
-  });
-
-  document.addEventListener('DOMContentLoaded', () => {
-    playRandomSong();
-  });
-</script>
-
+    toggleButton.addEventListener('click', () => {
+      audio.muted = !audio.muted;
+      toggleButton.textContent = audio.muted ? '🔇' : '🔊';
+    });
+  </script>
 </body>
 </html>
