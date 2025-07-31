@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
   <title>Nishka's Complaint Box 🎀</title>
   <link href="https://fonts.googleapis.com/css2?family=Princess+Sofia&family=Schoolbell&display=swap" rel="stylesheet">
   <style>
@@ -14,6 +14,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      zoom: 1;
     }
     h1 {
       font-family: 'Princess Sofia', cursive;
@@ -56,9 +57,11 @@
     }
     #toggle-sound {
       margin-top: 20px;
-      background-color: #fff;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
       color: #ff69b4;
-      border: 2px solid #ff69b4;
     }
     @media (max-width: 480px) {
       h1 {
@@ -76,7 +79,7 @@
   <button type="submit">🤬📤</button>
 </form>
 
-<button id="toggle-sound">🔇 Sound Off</button>
+<button id="toggle-sound">🔊</button>
 
 <audio id="bg-audio" autoplay preload="auto"></audio>
 
@@ -97,7 +100,7 @@
   function playRandomSong() {
     const randomIndex = Math.floor(Math.random() * songs.length);
     audio.src = songs[randomIndex];
-    audio.play();
+    audio.play().catch(() => {});
   }
 
   audio.addEventListener('ended', playRandomSong);
@@ -105,14 +108,11 @@
   toggleButton.addEventListener('click', () => {
     isMuted = !isMuted;
     audio.muted = isMuted;
-    toggleButton.textContent = isMuted ? '🔇 Sound Off' : '🔊 Sound On';
+    toggleButton.textContent = isMuted ? '🔇' : '🔊';
   });
 
-  // Start playing only after a user gesture
-  toggleButton.addEventListener('click', () => {
-    if (audio.paused) {
-      playRandomSong();
-    }
+  document.addEventListener('DOMContentLoaded', () => {
+    playRandomSong();
   });
 </script>
 
