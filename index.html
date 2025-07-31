@@ -1,80 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nishka's Complaint Box 🎀</title>
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Open+Sans&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <title>Nishka's Complaint Box</title>
+  <link href="https://fonts.googleapis.com/css2?family=Argyle+Socks&display=swap" rel="stylesheet">
   <style>
     body {
-      background-color: #ffe6f0;
-      font-family: 'Open Sans', sans-serif;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-    }
-    h1 {
-      color: #ff69b4;
-      font-family: 'Pacifico', cursive;
-      margin-top: 20px;
-    }
-    .hello-kitty {
-      width: 150px;
-      margin: 20px 0;
-    }
-    .kitty-text {
-      font-size: 1.2rem;
-      color: #d63384;
-      font-weight: bold;
+      background-image: url("pxfuel.jpg");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      color: #fff;
       text-align: center;
+      padding: 2rem;
     }
-    .complaint-box {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      background-color: #fff0f5;
-      border: 2px dashed #ff69b4;
+
+    h1 {
+      font-family: 'Argyle Socks', cursive;
+      font-size: 3rem;
+      color: #ff69b4;
+      margin-bottom: 2rem;
+      text-shadow: 2px 2px 5px #00000040;
+    }
+
+    .bubble {
+      position: absolute;
+      background: white;
+      color: black;
+      border-radius: 1rem;
+      padding: 1rem;
+      max-width: 300px;
+      box-shadow: 0px 0px 10px #00000030;
+    }
+
+    .left-bubble {
+      top: 10%;
+      left: 5%;
+    }
+
+    .right-bubble {
+      top: 10%;
+      right: 5%;
+    }
+
+    form {
+      background-color: rgba(255, 255, 255, 0.8);
+      color: #000;
       padding: 20px;
-      border-radius: 20px;
-      width: 80%;
+      border-radius: 10px;
       max-width: 400px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      margin: 50px auto 0;
     }
-    textarea {
+
+    input, textarea, button {
       width: 100%;
-      height: 100px;
-      border: 2px solid #ffb6c1;
-      border-radius: 10px;
+      margin: 10px 0;
       padding: 10px;
-      font-size: 1rem;
-      resize: none;
-    }
-    button {
-      margin-top: 15px;
-      padding: 10px 20px;
-      background-color: #ff69b4;
       border: none;
-      border-radius: 10px;
-      color: white;
+      border-radius: 5px;
       font-size: 1rem;
+    }
+
+    button {
+      background-color: #ff69b4;
+      color: white;
+      font-weight: bold;
       cursor: pointer;
     }
+
     button:hover {
-      background-color: #ff85c1;
+      background-color: #ff1493;
+    }
+
+    .positioning {
+      position: relative;
+      height: 0;
     }
   </style>
 </head>
 <body>
-  <h1>🎀 Nishka's Complaint Box 🎀</h1>
-  <img src="https://i.imgur.com/5G9goqs.png" alt="Hello Kitty" style="width: 150px;" />
-  <div class="kitty-text">"What has he done now, princess?"<br>कर लो शिकायत मेरे बारे में 🥺💔💔</div>
-  <form class="complaint-box" method="POST" action="https://formspree.io/f/xblkkpqa">
-    <textarea name="complaint" placeholder="Type your royal complaint here, princess 🎀" required></textarea>
-    <button type="submit">Submit Complaint 💌</button>
+  <h1>Nishka's Complaint Box</h1>
+
+  <div class="positioning">
+    <div class="bubble left-bubble">
+      What has he done now, princess?
+    </div>
+    <div class="bubble right-bubble">
+      Time to act like an evil bitch.
+    </div>
+  </div>
+
+  <form action="https://formspree.io/f/xblkkpqa" method="POST">
+    <label for="name">Your Name</label>
+    <input type="text" name="name" id="name" required>
+
+    <label for="complaint">Your Complaint</label>
+    <textarea name="complaint" id="complaint" rows="5" required></textarea>
+
+    <button type="submit">Submit</button>
   </form>
 </body>
 </html>
