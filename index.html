@@ -20,6 +20,7 @@
       flex-direction: column;
       align-items: center;
       position: relative;
+      overflow-x: hidden;
     }
 
     h1 {
@@ -32,28 +33,12 @@
 
     .complaint-wrapper {
       position: relative;
+      width: 100%;
+      max-width: 420px;
       display: flex;
       justify-content: center;
       align-items: center;
-      width: 100%;
-      max-width: 420px;
     }
-
-    .heart {
-      position: absolute;
-      font-size: 1.5rem;
-      color: #ff69b4;
-      pointer-events: none;
-    }
-
-    .heart.tl { top: -10px; left: -10px; }
-    .heart.tr { top: -10px; right: -10px; }
-    .heart.bl { bottom: -10px; left: -10px; }
-    .heart.br { bottom: -10px; right: -10px; }
-    .heart.tm { top: -10px; left: 50%; transform: translateX(-50%); }
-    .heart.bm { bottom: -10px; left: 50%; transform: translateX(-50%); }
-    .heart.ml { top: 50%; left: -10px; transform: translateY(-50%); }
-    .heart.mr { top: 50%; right: -10px; transform: translateY(-50%); }
 
     .complaint-box {
       display: flex;
@@ -64,6 +49,7 @@
       border-radius: 20px;
       width: 100%;
       box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      z-index: 1;
     }
 
     textarea {
@@ -91,6 +77,22 @@
       background-color: #ff85c1;
     }
 
+    /* Heart styles */
+    .heart {
+      position: absolute;
+      font-size: 1.5rem;
+      animation: float 3s ease-in-out infinite;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0); opacity: 0.7; }
+      50% { transform: translateY(-10px); opacity: 1; }
+      100% { transform: translateY(0); opacity: 0.7; }
+    }
+
+    /* Media query */
     @media screen and (max-width: 480px) {
       h1 {
         font-size: 2rem;
@@ -115,15 +117,15 @@
   <h1>Nishka's Complaint Box</h1>
 
   <div class="complaint-wrapper">
-    <!-- Decorative hearts -->
-    <div class="heart tl">❤️</div>
-    <div class="heart tr">❤️</div>
-    <div class="heart bl">❤️</div>
-    <div class="heart br">❤️</div>
-    <div class="heart tm">❤️</div>
-    <div class="heart bm">❤️</div>
-    <div class="heart ml">❤️</div>
-    <div class="heart mr">❤️</div>
+    <!-- Floating hearts -->
+    <div class="heart" style="top: -20px; left: 10%;">💗</div>
+    <div class="heart" style="top: 30px; right: -10px;">💗</div>
+    <div class="heart" style="bottom: -20px; left: 20%;">💗</div>
+    <div class="heart" style="top: 80px; left: -20px;">💗</div>
+    <div class="heart" style="top: 150px; right: -15px;">💗</div>
+    <div class="heart" style="bottom: 30px; right: -10px;">💗</div>
+    <div class="heart" style="top: -15px; right: 30%;">💗</div>
+    <div class="heart" style="bottom: -25px; left: 50%;">💗</div>
 
     <!-- Complaint box -->
     <form class="complaint-box" method="POST" action="https://formspree.io/f/YOUR_FORM_ID">
