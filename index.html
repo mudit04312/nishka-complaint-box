@@ -2,16 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Nishka's Complaint Box 🎀</title>
-  <link href="https://fonts.googleapis.com/css2?family=Princess+Sofia&family=Open+Sans&family=Schoolbell&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Princess+Sofia&family=Schoolbell&display=swap" rel="stylesheet">
   <style>
-    * {
-      box-sizing: border-box;
-    }
     body {
       background-color: #ffe6f0;
-      font-family: 'Open Sans', sans-serif;
+      font-family: 'Schoolbell', cursive;
       margin: 0;
       padding: 20px;
       display: flex;
@@ -19,20 +16,17 @@
       align-items: center;
     }
     h1 {
-      color: #ff69b4;
       font-family: 'Princess Sofia', cursive;
+      color: #ff69b4;
       font-size: 3.5rem;
+      margin-bottom: 20px;
       text-align: center;
-      margin: 20px 0;
     }
     .complaint-box {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
       background-color: #fff0f5;
       border: 2px solid #ff69b4;
-      padding: 20px;
       border-radius: 20px;
+      padding: 20px;
       width: 100%;
       max-width: 400px;
       box-shadow: 0 4px 8px rgba(0,0,0,0.2);
@@ -40,11 +34,9 @@
     textarea {
       width: 100%;
       height: 100px;
-      border: 2px solid #ffb6c1;
-      border-radius: 10px;
       padding: 10px;
-      font-size: 1rem;
-      resize: none;
+      border-radius: 10px;
+      border: 2px solid #ffb6c1;
       font-family: 'Open Sans', sans-serif;
     }
     textarea::placeholder {
@@ -62,71 +54,67 @@
       font-size: 1rem;
       cursor: pointer;
     }
-    button:hover {
-      background-color: #ff85c1;
-    }
-    .mute-toggle {
+    #toggle-sound {
       margin-top: 20px;
-      font-size: 1rem;
-      color: #ff1493;
-      background: none;
-      border: none;
-      cursor: pointer;
+      background-color: #fff;
+      color: #ff69b4;
+      border: 2px solid #ff69b4;
     }
-    @media screen and (max-width: 480px) {
+    @media (max-width: 480px) {
       h1 {
         font-size: 2rem;
-      }
-      .complaint-box {
-        padding: 15px;
-      }
-      textarea {
-        font-size: 0.95rem;
-      }
-      button {
-        font-size: 0.95rem;
-        padding: 10px;
       }
     }
   </style>
 </head>
 <body>
-  <h1>Nishka's Complaint Box</h1>
-  <form class="complaint-box" method="POST" action="https://formspree.io/f/YOUR_FORM_ID">
-    <textarea name="complaint" placeholder="Type your royal complaint here, princess <3" required></textarea>
-    <button type="submit">🤬📤</button>
-  </form>
 
-  <button class="mute-toggle" onclick="toggleMute()">🔊 Sound On</button>
+<h1>Nishka's Complaint Box</h1>
 
-  <audio id="bgMusic" autoplay></audio>
+<form class="complaint-box" method="POST" action="#">
+  <textarea name="complaint" placeholder="Type your royal complaint here, princess <3" required></textarea>
+  <button type="submit">🤬📤</button>
+</form>
 
-  <script>
-    const songs = [
-      "https://www.dropbox.com/scl/fi/xae54vgewwtzfdldounrs/blue-instrumental.mp3?rlkey=zv8a7m723obj6i8k18giproxe&raw=1",
-      "https://www.dropbox.com/scl/fi/d7fhsnuinvk2hdexfqrml/Connie-Francis-Pretty-Little-Baby-Official-Audio.mp3?rlkey=k1kyk3s6vfieqgr5itpvw4w7v&raw=1",
-      "https://www.dropbox.com/scl/fi/ab1yk30e5p01eh2gm3fqq/FNAF-Security-Breach-OST_-Daycare-Theme.mp3?rlkey=671ecd6rmk1i3pqvjhtbrs7od&raw=1",
-      "https://www.dropbox.com/scl/fi/u9a3obvxmcu8onrswsbmj/the-cat-from-ipanema.mp3?rlkey=sku5g7zeie5jfrbv85ux31cxr&raw=1",
-      "https://www.dropbox.com/scl/fi/1KF02wcoKUV1nb3zfIIyOgksfvC-9on5G/tsundere.mp3?rlkey=z3o2zzrjnpw8n5khgg1h8j1d8&raw=1"
-    ];
+<button id="toggle-sound">🔇 Sound Off</button>
 
-    const player = document.getElementById("bgMusic");
-    let isMuted = false;
+<audio id="bg-audio" autoplay preload="auto"></audio>
 
-    function playRandomSong() {
-      const song = songs[Math.floor(Math.random() * songs.length)];
-      player.src = song;
-      player.play();
+<script>
+  const audio = document.getElementById('bg-audio');
+  const toggleButton = document.getElementById('toggle-sound');
+
+  const songs = [
+    'https://www.dropbox.com/scl/fi/d7fhsnuinvk2hdexfqrml/Connie-Francis-Pretty-Little-Baby-Official-Audio.mp3?rlkey=k1kyk3s6vfieqgr5itpvw4w7v&raw=1',
+    'https://www.dropbox.com/scl/fi/ab1yk30e5p01eh2gm3fqq/FNAF-Security-Breach-OST_-Daycare-Theme.mp3?rlkey=671ecd6rmk1i3pqvjhtbrs7od&raw=1',
+    'https://www.dropbox.com/scl/fi/xae54vgewwtzfdldounrs/blue-instrumental.mp3?rlkey=zv8a7m723obj6i8k18giproxe&raw=1',
+    'https://www.dropbox.com/scl/fi/u9a3obvxmcu8onrswsbmj/the-cat-from-ipanema.mp3?rlkey=sku5g7zeie5jfrbv85ux31cxr&raw=1',
+    'https://www.dropbox.com/scl/fi/1KF02wcoKUV1nb3zfIIyOgksfvC-9on5G/tsundere.mp3?rlkey=z3o2zzrjnpw8n5khgg1h8j1d8&raw=1'
+  ];
+
+  let isMuted = false;
+
+  function playRandomSong() {
+    const randomIndex = Math.floor(Math.random() * songs.length);
+    audio.src = songs[randomIndex];
+    audio.play();
+  }
+
+  audio.addEventListener('ended', playRandomSong);
+
+  toggleButton.addEventListener('click', () => {
+    isMuted = !isMuted;
+    audio.muted = isMuted;
+    toggleButton.textContent = isMuted ? '🔇 Sound Off' : '🔊 Sound On';
+  });
+
+  // Start playing only after a user gesture
+  toggleButton.addEventListener('click', () => {
+    if (audio.paused) {
+      playRandomSong();
     }
+  });
+</script>
 
-    function toggleMute() {
-      isMuted = !isMuted;
-      player.muted = isMuted;
-      document.querySelector(".mute-toggle").textContent = isMuted ? "🔇 Sound Off" : "🔊 Sound On";
-    }
-
-    player.addEventListener("ended", playRandomSong);
-    window.addEventListener("load", playRandomSong);
-  </script>
 </body>
 </html>
