@@ -50,21 +50,21 @@
       color: #999;
     }
     button[type="submit"] {
-  margin: 15px auto 0;
-  display: block;
-  padding: 10px 20px;
-  background-color: #ff69b4;
-  border: none;
-  border-radius: 10px;
-  color: white;
-  font-size: 1rem;
-  cursor: pointer;
-}
-#toggle-sound {
+      margin: 15px auto 0;
+      display: block;
+      padding: 10px 20px;
+      background-color: #ff69b4;
+      border: none;
+      border-radius: 10px;
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    #toggle-sound {
       position: fixed;
       bottom: 20px;
       right: 20px;
-      font-size: 1.5rem;
+      font-size: 2rem;
       background: none;
       border: none;
       cursor: pointer;
@@ -112,13 +112,11 @@
       audio.play();
     }
 
-    // Autoplay muted with first song
     window.addEventListener('DOMContentLoaded', () => {
       audio.src = getRandomSong();
       audio.play();
     });
 
-    // When song ends, play another
     audio.addEventListener('ended', playRandomSong);
 
     toggleButton.addEventListener('click', () => {
