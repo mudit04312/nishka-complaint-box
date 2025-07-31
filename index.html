@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Nishka's Complaint Box 🎀</title>
   <link href="https://fonts.googleapis.com/css2?family=Princess+Sofia&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
   <style>
     * {
       box-sizing: border-box;
@@ -19,7 +18,6 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      position: relative;
       overflow-x: hidden;
     }
 
@@ -29,15 +27,7 @@
       font-size: 2.5rem;
       text-align: center;
       margin: 20px 0;
-    }
-
-    .complaint-wrapper {
-      position: relative;
-      width: 100%;
-      max-width: 420px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      z-index: 2;
     }
 
     .complaint-box {
@@ -48,8 +38,10 @@
       padding: 20px;
       border-radius: 20px;
       width: 100%;
+      max-width: 400px;
       box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-      z-index: 1;
+      position: relative;
+      z-index: 2;
     }
 
     textarea {
@@ -77,22 +69,28 @@
       background-color: #ff85c1;
     }
 
-    /* Heart styles */
     .heart {
       position: absolute;
-      font-size: 1.5rem;
-      animation: float 3s ease-in-out infinite;
-      pointer-events: none;
-      z-index: 0;
+      font-size: 24px;
+      animation: floatHearts 8s linear infinite;
+      opacity: 0.8;
+      z-index: 1;
     }
 
-    @keyframes float {
-      0% { transform: translateY(0); opacity: 0.7; }
-      50% { transform: translateY(-10px); opacity: 1; }
-      100% { transform: translateY(0); opacity: 0.7; }
+    @keyframes floatHearts {
+      0% {
+        transform: translateY(100vh) scale(1);
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh) scale(1.5);
+        opacity: 0;
+      }
     }
 
-    /* Media query */
     @media screen and (max-width: 480px) {
       h1 {
         font-size: 2rem;
@@ -114,24 +112,22 @@
   </style>
 </head>
 <body>
+
   <h1>Nishka's Complaint Box</h1>
 
-  <div class="complaint-wrapper">
-    <!-- Floating hearts -->
-    <div class="heart" style="top: -20px; left: 10%;">💗</div>
-    <div class="heart" style="top: 30px; right: -10px;">💗</div>
-    <div class="heart" style="bottom: -20px; left: 20%;">💗</div>
-    <div class="heart" style="top: 80px; left: -20px;">💗</div>
-    <div class="heart" style="top: 150px; right: -15px;">💗</div>
-    <div class="heart" style="bottom: 30px; right: -10px;">💗</div>
-    <div class="heart" style="top: -15px; right: 30%;">💗</div>
-    <div class="heart" style="bottom: -25px; left: 50%;">💗</div>
+  <!-- Animated Floating Hearts -->
+  <span class="heart" style="left: 10%; animation-delay: 0s;">💗</span>
+  <span class="heart" style="left: 25%; animation-delay: 1s;">💗</span>
+  <span class="heart" style="left: 40%; animation-delay: 2s;">💗</span>
+  <span class="heart" style="left: 60%; animation-delay: 3s;">💗</span>
+  <span class="heart" style="left: 75%; animation-delay: 4s;">💗</span>
+  <span class="heart" style="left: 90%; animation-delay: 5s;">💗</span>
 
-    <!-- Complaint box -->
-    <form class="complaint-box" method="POST" action="https://formspree.io/f/YOUR_FORM_ID">
-      <textarea name="complaint" placeholder="Type your royal complaint here, princess <3" required></textarea>
-      <button type="submit">Submit 📤</button>
-    </form>
-  </div>
+  <!-- Complaint Box -->
+  <form class="complaint-box" method="POST" action="https://formspree.io/f/YOUR_FORM_ID">
+    <textarea name="complaint" placeholder="Type your royal complaint here, princess <3" required></textarea>
+    <button type="submit">Submit 📤</button>
+  </form>
+
 </body>
 </html>
