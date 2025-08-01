@@ -7,9 +7,7 @@
   <link rel="icon" href="favicon.png" type="image/png">
   <link href="https://fonts.googleapis.com/css2?family=Princess+Sofia&family=Schoolbell&family=Freckle+Face&family=Slackey&display=swap" rel="stylesheet">
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
     body {
       position: relative;
       background-color: #43001A;
@@ -75,7 +73,6 @@
       cursor: pointer;
       color: #ff69b4;
     }
-
     .character-img {
       position: absolute;
       width: 80px;
@@ -88,7 +85,6 @@
     .img3 { top: 590px; left: 43.8955px; width: 100px; }
     .img4 { top: 387.5px; left: 8.54167px; width: 95px; }
     .img5 { top: 410px; right: 8.54167px; width: 80px; }
-
     .dialogue {
       position: absolute;
       font-family: 'Schoolbell', cursive;
@@ -102,64 +98,25 @@
       text-align: center;
       z-index: 3;
     }
-
-    .text1::after {
+    .text1::after, .text2::after, .text3::after, .text4::after, .text5::after {
       content: "";
       position: absolute;
       top: 100%;
-      border-width: 10px 3px 0 3px;
       border-style: solid;
       border-color: rgba(255, 105, 180, 0.3) transparent transparent transparent;
     }
-    .text3::after {
-      content: "";
-      position: absolute;
-      top: 100%;
-      border-width: 10px;
-      border-style: solid;
-      border-color: rgba(255, 105, 180, 0.3) transparent transparent transparent;
-    }
-    .text2::after {
-      content: "";
-      position: absolute;
-      top: 100%;
-      border-width: 18px 4px 0 4px;
-      border-style: solid;
-      border-color: rgba(255, 105, 180, 0.3) transparent transparent transparent;
-    }
-    .text5::after {
-      content: "";
-      position: absolute;
-      top: 100%;
-      border-width: 20px 4px 0 4px;
-      border-style: solid;
-      border-color: rgba(255, 105, 180, 0.3) transparent transparent transparent;
-    }
-    .text4::after {
-      content: "";
-      position: absolute;
-      top: 100%;
-      border-width: 18px 5px 0 5px;
-      border-style: solid;
-      border-color: rgba(255, 105, 180, 0.3) transparent transparent transparent;
-    }
-
-    .text1::after { left: 60%; }
-    .text2::after { left: 25%; }
-    .text3::after { left: 50%; transform: translateX(-50%); }
-    .text4::after { left: 17.5%; }
-    .text5::after { right: 22.25%; }
-
+    .text1::after { border-width: 10px 3px 0 3px; left: 60%; }
+    .text2::after { border-width: 18px 4px 0 4px; left: 25%; }
+    .text3::after { border-width: 10px; left: 50%; transform: translateX(-50%); }
+    .text4::after { border-width: 18px 5px 0 5px; left: 17.5%; }
+    .text5::after { border-width: 20px 4px 0 4px; right: 22.25%; }
     .text1 { top: 419px; left: 150px; }
     .text2 { top: 540px; left: 210px; }
     .text3 { top: 520px; left: 12px; }
     .text4 { top: 320px; left: 23px; }
     .text5 { top: 327.5px; left: 217.5px; }
-
     @media (max-width: 480px) {
-      h1 {
-        font-size: 1.9rem;
-      }
+      h1 { font-size: 1.9rem; }
     }
   </style>
 </head>
@@ -169,32 +126,24 @@
     <span style="font-family: 'Slackey', cursive; font-size: 1.25rem;"> Complaint Box </span>
     <span style="font-family: 'Princess Sofia', cursive; font-size: 1.7rem;">🎀</span>
   </h1>
-
-  <!-- ✅ Updated form with JS handling -->
   <form id="complaint-form" class="complaint-box">
     <textarea name="complaint" placeholder="Type your royal complaint, princess <3" required></textarea>
     <button type="submit">🤬📤</button>
   </form>
-
   <button id="toggle-sound">🔇</button>
-
   <img src="Cinnamoroll.png" class="character-img img1" alt="Cinnamoroll">
   <img src="Pompompurin.png" class="character-img img2" alt="Pompompurin">
   <img src="hellokitty.png" class="character-img img3" alt="Hello Kitty">
   <img src="kuromi.png" class="character-img img4" alt="Kuromi">
   <img src="mymelody.png" class="character-img img5" alt="My Melody">
-
   <div class="dialogue text1">Hi, Nishka!</div>
   <div class="dialogue text2">Tap here to play some music</div>
   <div class="dialogue text3">Oh, welcome back... I guess</div>
   <div class="dialogue text4">It's time to act like an evil bitch, Nishka</div>
   <div class="dialogue text5">What did he do this time?</div>
-
   <audio id="bg-audio" autoplay muted preload="auto"></audio>
   <audio id="kuromi-sound" src="https://www.dropbox.com/scl/fi/srpl3kwjojeq0y80g1zdy/Kuromi.mp3?rlkey=p6q6e9fpruggeojgw8rtvalgq&raw=1" preload="auto"></audio>
-
   <script>
-    // Formspree submission
     document.getElementById("complaint-form").addEventListener("submit", function (e) {
       e.preventDefault();
       const formData = new FormData(this);
@@ -215,11 +164,8 @@
         alert("❌ Network error. Please try again.");
       });
     });
-
-    // Music & character interaction
     const audio = document.getElementById('bg-audio');
     const toggleButton = document.getElementById('toggle-sound');
-
     const songs = [
       'https://www.dropbox.com/scl/fi/d7fhsnuinvk2hdexfqrml/Connie-Francis-Pretty-Little-Baby-Official-Audio.mp3?rlkey=k1kyk3s6vfieqgr5itpvw4w7v&raw=1',
       'https://www.dropbox.com/scl/fi/ab1yk30e5p01eh2gm3fqq/FNAF-Security-Breach-OST_-Daycare-Theme.mp3?rlkey=671ecd6rmk1i3pqvjhtbrs7od&raw=1',
@@ -227,35 +173,23 @@
       'https://www.dropbox.com/scl/fi/u9a3obvxmcu8onrswsbmj/the-cat-from-ipanema.mp3?rlkey=sku5g7zeie5jfrbv85ux31cxr&raw=1',
       'https://www.dropbox.com/scl/fi/1KF02wcoKUV1nb3zfIIyOgksfvC-9on5G/tsundere.mp3?rlkey=z3o2zzrjnpw8n5khgg1h8j1d8&raw=1'
     ];
-
     function getRandomSong() {
-      const randomIndex = Math.floor(Math.random() * songs.length);
-      return songs[randomIndex];
+      return songs[Math.floor(Math.random() * songs.length)];
     }
-
     function playRandomSong() {
       audio.src = getRandomSong();
       audio.play();
     }
-
     toggleButton.addEventListener('click', () => {
-      if (audio.muted) {
-        audio.muted = false;
-        toggleButton.textContent = '🔊';
-        audio.play();
-      } else {
-        audio.muted = true;
-        toggleButton.textContent = '🔇';
-      }
+      audio.muted = !audio.muted;
+      toggleButton.textContent = audio.muted ? '🔇' : '🔊';
+      if (!audio.muted) audio.play();
     });
-
     window.addEventListener('DOMContentLoaded', () => {
       audio.src = getRandomSong();
       audio.play();
     });
-
     audio.addEventListener('ended', playRandomSong);
-
     document.querySelector('.img4').addEventListener('click', () => {
       const kuromiSound = document.getElementById('kuromi-sound');
       kuromiSound.currentTime = 0;
