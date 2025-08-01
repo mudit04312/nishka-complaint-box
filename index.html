@@ -28,13 +28,14 @@
       text-align: center;
     }
     .complaint-box {
-      background-color: #43001A;
+      background-color: rgba(67, 0, 26, 0.3);
       border: 2px solid #ff69b4;
       border-radius: 20px;
       padding: 20px;
       width: 100%;
       max-width: 400px;
       box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      backdrop-filter: blur(2px);
       z-index: 1;
     }
     textarea {
@@ -91,36 +92,67 @@
       position: absolute;
       font-family: 'Schoolbell', cursive;
       font-size: 1rem;
-      color: black;
-      background-color: white;
+      color: white;
+      background-color: rgba(255, 105, 180, 0.3);
       padding: 10px 15px;
       border-radius: 20px;
-      border: 2px solid black;
+      backdrop-filter: blur(2px);
       max-width: 160px;
       text-align: center;
       z-index: 3;
     }
 
-    .dialogue::after {
+    /* === Unique tails for each dialogue bubble === */
+    .text1::after {
       content: "";
       position: absolute;
       top: 100%;
-      width: 0;
-      height: 0;
+      left: 30%;
       border-width: 10px;
       border-style: solid;
-      border-color: white transparent transparent transparent;
-      filter: drop-shadow(0 -1px 0 black);
+      border-color: rgba(255, 105, 180, 0.3) transparent transparent transparent;
     }
 
-    .text1::after { left: 30%; }
-    .text2::after { right: 20%; }
+    .text2::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      right: 20%;
+      border-width: 10px;
+      border-style: solid;
+      border-color: rgba(255, 105, 180, 0.3) transparent transparent transparent;
+    }
+
     .text3::after {
+      content: "";
+      position: absolute;
+      top: 100%;
       left: 50%;
       transform: translateX(-50%);
+      border-width: 10px;
+      border-style: solid;
+      border-color: rgba(255, 105, 180, 0.3) transparent transparent transparent;
     }
-    .text4::after { left: 40%; }
-    .text5::after { right: 35%; }
+
+    .text4::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 40%;
+      border-width: 10px;
+      border-style: solid;
+      border-color: rgba(255, 105, 180, 0.3) transparent transparent transparent;
+    }
+
+    .text5::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      right: 35%;
+      border-width: 10px;
+      border-style: solid;
+      border-color: rgba(255, 105, 180, 0.3) transparent transparent transparent;
+    }
 
     .text1 { top: 430px; left: 150px; }
     .text2 { top: 550px; left: 250px; }
@@ -153,7 +185,7 @@
   <div class="dialogue text1">Hi, Nishka!</div>
   <div class="dialogue text2">Tap here to play some music</div>
   <div class="dialogue text3">Oh, welcome back... I guess</div>
-  <div class="dialogue text4">It's high time to act like an evil bitch, Nishka</div>
+  <div class="dialogue text4">It's time to act like an evil bitch, Nishka</div>
   <div class="dialogue text5">What did he do this time?</div>
 
   <audio id="bg-audio" autoplay muted preload="auto"></audio>
