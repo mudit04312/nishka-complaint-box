@@ -103,7 +103,14 @@
       z-index: 3;
     }
 
-    .text2::after,
+    .text2::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  border-width: 10px 3px 0 3px;
+  border-style: solid;
+  border-color: rgba(255, 105, 180, 0.3) transparent transparent transparent;
+}
     .text3::after,
     .text1::after {
       content: "";
