@@ -75,19 +75,21 @@
       cursor: pointer;
       color: #ff69b4;
     }
+
+    /* === Characters (Fixed Positions) === */
     .character-img {
       position: absolute;
       width: 80px;
       opacity: 0.9;
       z-index: 2;
-      touch-action: none;
     }
-    .img1 { top: 60%; left: 50%; transform: translate(-50%, -50%); width: 100px; }
-    .img2 { bottom: 15.5px; right: 60px; width: 90px; }
-    .img3 { bottom: 20px; left: 40px; width: 100px; }
-    .img4 { top: 60%; left: 5%; transform: translateY(-50%); width: 80px; }
-    .img5 { top: 60%; left: 80%; transform: translate(-50%, -50%); width: 80px; }
+    .img1 { top: 518.754px; left: 193.594px; width: 100px; }
+    .img2 { top: 654.293px; left: 224.043px; width: 90px; }
+    .img3 { top: 634.557px; left: 43.8955px; width: 100px; }
+    .img4 { top: 492.221px; left: 8.54167px; width: 80px; }
+    .img5 { top: 462.278px; left: 321.194px; width: 80px; }
 
+    /* === Dialogue Boxes (Fixed) === */
     .dialogue {
       position: absolute;
       font-family: 'Schoolbell', cursive;
@@ -100,7 +102,6 @@
       max-width: 160px;
       text-align: center;
       z-index: 3;
-      touch-action: none;
     }
     .dialogue::after {
       content: "";
@@ -112,11 +113,11 @@
       border-style: solid;
       border-color: rgba(255, 105, 180, 0.3) transparent transparent transparent;
     }
-    .text1 { top: calc(60% - 90px); left: 50%; transform: translateX(-50%); }
-    .text2 { bottom: 120px; right: 60px; }
-    .text3 { bottom: 130px; left: 40px; }
-    .text4 { top: calc(60% - 80px); left: 5%; }
-    .text5 { top: calc(60% - 80px); left: 80%; transform: translateX(-50%); }
+    .text1 { top: 449.142px; left: 190.126px; }
+    .text2 { top: 599.449px; left: 307.156px; }
+    .text3 { top: 586.958px; left: 80.8434px; }
+    .text4 { top: 372.778px; left: 21.6865px; }
+    .text5 { top: 319.104px; left: 316.527px; }
 
     @media (max-width: 480px) {
       h1 {
@@ -187,36 +188,6 @@
     });
 
     audio.addEventListener('ended', playRandomSong);
-
-    // 🎯 Drag script for mobile
-    function makeTouchDrag(selector) {
-      document.querySelectorAll(selector).forEach(elem => {
-        elem.style.position = 'absolute';
-        elem.style.touchAction = 'none';
-        elem.addEventListener('touchstart', e => {
-          const touch = e.touches[0];
-          const rect = elem.getBoundingClientRect();
-          elem.dataset.offsetX = touch.clientX - rect.left;
-          elem.dataset.offsetY = touch.clientY - rect.top;
-        });
-        elem.addEventListener('touchmove', e => {
-          e.preventDefault();
-          const touch = e.touches[0];
-          const x = touch.clientX - elem.dataset.offsetX;
-          const y = touch.clientY - elem.dataset.offsetY;
-          elem.style.left = x + 'px';
-          elem.style.top = y + 'px';
-        });
-        elem.addEventListener('touchend', () => {
-          console.log(`${elem.alt || elem.className} moved to top:${elem.style.top}, left:${elem.style.left}`);
-        });
-      });
-    }
-
-    window.addEventListener('DOMContentLoaded', () => {
-      makeTouchDrag('.character-img');
-      makeTouchDrag('.dialogue');
-    });
   </script>
 </body>
 </html>
