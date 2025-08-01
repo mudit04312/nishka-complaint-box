@@ -83,56 +83,76 @@
       z-index: 0;
     }
     .img1 {
-  position: fixed;
-  top: 60%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 100px;
-  opacity: 1;
-  pointer-events: none;
-  z-index: 2;
-}
+      position: fixed;
+      top: 60%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100px;
+      opacity: 1;
+      pointer-events: none;
+      z-index: 2;
+    }
     .img2 {
-  position: fixed;       
-  bottom: 20px;
-  right: 55px;
-  width: 80px;
-  opacity: 1;
-  pointer-events: none;
-  z-index: 2;             
-}
-
-
+      position: fixed;       
+      bottom: 20px;
+      right: 55px;
+      width: 80px;
+      opacity: 1;
+      pointer-events: none;
+      z-index: 2;             
+    }
     .img3 {
-  position: fixed;
-  bottom: 20px;
-  left: 40px;
-  width: 100px;
-  opacity: 1;
-  pointer-events: none;
-  z-index: 2;
-}
-
+      position: fixed;
+      bottom: 20px;
+      left: 40px;
+      width: 100px;
+      opacity: 1;
+      pointer-events: none;
+      z-index: 2;
+    }
     .img4 {
-  position: fixed;
-  top: 60%;
-  left: 5%;
-  transform: translateY(-50%);
-  width: 80px;
-  opacity: 1;
-  pointer-events: none;
-  z-index: 2;
-}
+      position: fixed;
+      top: 60%;
+      left: 5%;
+      transform: translateY(-50%);
+      width: 80px;
+      opacity: 1;
+      pointer-events: none;
+      z-index: 2;
+    }
     .img5 {
-  position: fixed;
-  top: 60%;
-  left: 80%;
-  transform: translate(-50%, -50%);
-  width: 80px;
-  opacity: 1;
-  pointer-events: none;
-  z-index: 2;
-}
+      position: fixed;
+      top: 60%;
+      left: 80%;
+      transform: translate(-50%, -50%);
+      width: 80px;
+      opacity: 1;
+      pointer-events: none;
+      z-index: 2;
+    }
+    .platform {
+      position: fixed;
+      height: 4px;
+      background-color: #ff69b4;
+      z-index: 1;
+      border-radius: 2px;
+      opacity: 0.8;
+    }
+    #platform-group {
+      width: 60%;
+      left: 20%;
+      top: calc(60% + 50px);
+    }
+    #platform-hello {
+      width: 100px;
+      left: 40px;
+      bottom: 0;
+    }
+    #platform-purin {
+      width: 80px;
+      right: 55px;
+      bottom: 0;
+    }
     @media (max-width: 480px) {
       h1 {
         font-size: 2rem;
@@ -157,6 +177,11 @@
   <img src="hellokitty.png" class="character-img img3" alt="Hello Kitty">
   <img src="kuromi.png" class="character-img img4" alt="Kuromi">
   <img src="mymelody.png" class="character-img img5" alt="My Melody">
+
+  <!-- Platforms -->
+  <div class="platform" id="platform-group"></div>
+  <div class="platform" id="platform-hello"></div>
+  <div class="platform" id="platform-purin"></div>
 
   <audio id="bg-audio" autoplay muted preload="auto"></audio>
 
