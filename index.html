@@ -10,6 +10,7 @@
       box-sizing: border-box;
     }
     body {
+      position: relative; /* Needed for absolutely positioned images */
       background-color: #43001A;
       font-family: 'Schoolbell', cursive;
       margin: 0;
@@ -27,13 +28,14 @@
       text-align: center;
     }
     .complaint-box {
-      background-color: #43001A;
+      background-color: rgba(67, 0, 26, 0.3);
       border: 2px solid #ff69b4;
       border-radius: 20px;
       padding: 20px;
       width: 100%;
       max-width: 400px;
       box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      backdrop-filter: blur(2px);
     }
     textarea {
       width: 100%;
@@ -41,13 +43,15 @@
       padding: 10px;
       border-radius: 10px;
       border: 2px solid #ff69b4;
+      background-color: rgba(255, 255, 255, 0.1);
+      color: white;
       font-family: 'Schoolbell', cursive;
       font-size: 1rem;
       resize: none;
     }
     textarea::placeholder {
       font-size: 1.1rem;
-      color: #999;
+      color: #ccc;
     }
     button[type="submit"] {
       margin: 15px auto 0;
@@ -70,6 +74,16 @@
       cursor: pointer;
       color: #ff69b4;
     }
+
+    .random-image {
+      position: absolute;
+      width: 80px;
+      height: auto;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.9;
+    }
+
     @media (max-width: 480px) {
       h1 {
         font-size: 2rem;
@@ -112,13 +126,6 @@
       audio.play();
     }
 
-    window.addEventListener('DOMContentLoaded', () => {
-      audio.src = getRandomSong();
-      audio.play();
-    });
-
-    audio.addEventListener('ended', playRandomSong);
-
     toggleButton.addEventListener('click', () => {
       if (audio.muted) {
         audio.muted = false;
@@ -129,6 +136,37 @@
         toggleButton.textContent = '🔇';
       }
     });
+
+    // Play song on load
+    window.addEventListener('DOMContentLoaded', () => {
+      audio.src = getRandomSong();
+      audio.play();
+
+      // Place 5 random PNGs
+      const imageNames = [
+        'Cinnamoroll.png',
+        'Pompompurin.png',
+        'hellokitty.png',
+        'kuromi.png',
+        'mymelody.png'
+      ];
+
+      imageNames.forEach(name => {
+        const img = document.createElement('img');
+        img.src = name;
+        img.className = 'random-image';
+
+        const x = Math.random() * (window.innerWidth - 100);
+        const y = Math.random() * (window.innerHeight - 100);
+
+        img.style.left = `${x}px`;
+        img.style.top = `${y}px`;
+
+        document.body.appendChild(img);
+      });
+    });
+
+    audio.addEventListener('ended', playRandomSong);
   </script>
 </body>
 </html>
