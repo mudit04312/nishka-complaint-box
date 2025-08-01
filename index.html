@@ -130,78 +130,41 @@
       pointer-events: none;
       z-index: 2;
     }
+
     .dialogue {
       position: fixed;
       font-family: 'Schoolbell', cursive;
       font-size: 1rem;
       color: white;
-      background-color: rgba(255, 255, 255, 0.2);
-      border: 2px solid #fff;
-      padding: 8px 12px;
-      border-radius: 12px;
+      background-color: rgba(255, 105, 180, 0.3);
+      padding: 10px 15px;
+      border-radius: 20px;
+      backdrop-filter: blur(2px);
       max-width: 160px;
       text-align: center;
       z-index: 3;
-      display: none;
+      pointer-events: none;
     }
     .dialogue::after {
       content: "";
       position: absolute;
-      width: 0;
-      height: 0;
-      border: 8px solid transparent;
-    }
-    .text1 {
-      top: calc(60% - 90px);
+      bottom: -10px;
       left: 50%;
       transform: translateX(-50%);
+      border-width: 10px;
+      border-style: solid;
+      border-color: rgba(255, 105, 180, 0.3) transparent transparent transparent;
     }
-    .text1::after {
-      top: 100%;
-      left: 50%;
-      transform: translateX(-50%);
-      border-top-color: white;
-    }
-    .text2 {
-      bottom: 120px;
-      right: 60px;
-    }
-    .text2::after {
-      top: 100%;
-      left: 20%;
-      border-top-color: white;
-    }
-    .text3 {
-      bottom: 130px;
-      left: 40px;
-    }
-    .text3::after {
-      top: 100%;
-      left: 30%;
-      border-top-color: white;
-    }
-    .text4 {
-      top: calc(60% - 80px);
-      left: 5%;
-    }
-    .text4::after {
-      top: 100%;
-      left: 40%;
-      border-top-color: white;
-    }
-    .text5 {
-      top: calc(60% - 80px);
-      left: 80%;
-      transform: translateX(-50%);
-    }
-    .text5::after {
-      top: 100%;
-      left: 50%;
-      transform: translateX(-50%);
-      border-top-color: white;
-    }
-    .character-img:hover + .dialogue {
-      display: block;
+    .text1 { top: calc(60% - 90px); left: 50%; transform: translateX(-50%); }
+    .text2 { bottom: 120px; right: 60px; }
+    .text3 { bottom: 130px; left: 40px; }
+    .text4 { top: calc(60% - 80px); left: 5%; }
+    .text5 { top: calc(60% - 80px); left: 80%; transform: translateX(-50%); }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 2rem;
+      }
     }
   </style>
 </head>
@@ -211,21 +174,27 @@
     <textarea name="complaint" placeholder="Type your royal complaint, princess <3" required></textarea>
     <button type="submit">🤬📤</button>
   </form>
+
   <button id="toggle-sound">🔇</button>
+
   <img src="Cinnamoroll.png" class="character-img img1" alt="Cinnamoroll">
-  <div class="dialogue text1">HI, Nishka!</div>
   <img src="Pompompurin.png" class="character-img img2" alt="Pompompurin">
-  <div class="dialogue text2">Here, play some music</div>
   <img src="hellokitty.png" class="character-img img3" alt="Hello Kitty">
-  <div class="dialogue text3">Oh, welcome back... I guess</div>
   <img src="kuromi.png" class="character-img img4" alt="Kuromi">
-  <div class="dialogue text4">Time to act like an evil bitch</div>
   <img src="mymelody.png" class="character-img img5" alt="My Melody">
+
+  <div class="dialogue text1">HI, Nishka!</div>
+  <div class="dialogue text2">Here, play some music</div>
+  <div class="dialogue text3">Oh, welcome back... I guess</div>
+  <div class="dialogue text4">Time to act like an evil bitch</div>
   <div class="dialogue text5">What did he do this time?</div>
+
   <audio id="bg-audio" autoplay muted preload="auto"></audio>
+
   <script>
     const audio = document.getElementById('bg-audio');
     const toggleButton = document.getElementById('toggle-sound');
+
     const songs = [
       'https://www.dropbox.com/scl/fi/d7fhsnuinvk2hdexfqrml/Connie-Francis-Pretty-Little-Baby-Official-Audio.mp3?rlkey=k1kyk3s6vfieqgr5itpvw4w7v&raw=1',
       'https://www.dropbox.com/scl/fi/ab1yk30e5p01eh2gm3fqq/FNAF-Security-Breach-OST_-Daycare-Theme.mp3?rlkey=671ecd6rmk1i3pqvjhtbrs7od&raw=1',
@@ -233,14 +202,17 @@
       'https://www.dropbox.com/scl/fi/u9a3obvxmcu8onrswsbmj/the-cat-from-ipanema.mp3?rlkey=sku5g7zeie5jfrbv85ux31cxr&raw=1',
       'https://www.dropbox.com/scl/fi/1KF02wcoKUV1nb3zfIIyOgksfvC-9on5G/tsundere.mp3?rlkey=z3o2zzrjnpw8n5khgg1h8j1d8&raw=1'
     ];
+
     function getRandomSong() {
       const randomIndex = Math.floor(Math.random() * songs.length);
       return songs[randomIndex];
     }
+
     function playRandomSong() {
       audio.src = getRandomSong();
       audio.play();
     }
+
     toggleButton.addEventListener('click', () => {
       if (audio.muted) {
         audio.muted = false;
@@ -251,10 +223,12 @@
         toggleButton.textContent = '🔇';
       }
     });
+
     window.addEventListener('DOMContentLoaded', () => {
       audio.src = getRandomSong();
       audio.play();
     });
+
     audio.addEventListener('ended', playRandomSong);
   </script>
 </body>
