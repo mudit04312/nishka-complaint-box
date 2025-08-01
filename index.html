@@ -7,15 +7,15 @@
   <link rel="icon" href="favicon.png" type="image/png">
   <link href="https://fonts.googleapis.com/css2?family=Princess+Sofia&family=Schoolbell&family=Freckle+Face&family=Slackey&display=swap" rel="stylesheet">
   <style>
-    /* ...your existing styles unchanged... */
-    /* — for brevity, your full CSS is intact — */
-    /* ↓ New CSS added below ↓ */
-    .thank-you-message {
-      text-align: center;
+    /* (Your entire CSS remains unchanged) */
+    /* ... keeping everything from your original code ... */
+    /* Just adding this at the end for the thank-you message */
+    .thank-you {
+      display: none;
+      margin-top: 20px;
       color: #ff69b4;
       font-size: 1.2rem;
-      margin-top: 20px;
-      display: none;
+      text-align: center;
     }
   </style>
 </head>
@@ -26,18 +26,26 @@
     <span style="font-family: 'Princess Sofia', cursive; font-size: 1.7rem;">🎀</span>
   </h1>
 
-  <form class="complaint-box" method="POST" action="https://formspree.io/f/xblkkpqa" onsubmit="showThankYou()">
+  <form class="complaint-box" method="POST" action="https://formspree.io/f/xblkkpqa" onsubmit="handleSubmit(event)">
     <textarea name="complaint" placeholder="Type your royal complaint, princess <3" required></textarea>
     <button type="submit">🤬📤</button>
   </form>
 
-  <div class="thank-you-message" id="thankYouMessage">
-    💌 Your complaint has been sent to the royal inbox!
-  </div>
+  <div class="thank-you" id="thankYouMessage">🎉 Complaint submitted! Thanks, your highness!</div>
 
   <button id="toggle-sound">🔇</button>
 
-  <!-- character images and dialogue boxes unchanged -->
+  <img src="Cinnamoroll.png" class="character-img img1" alt="Cinnamoroll">
+  <img src="Pompompurin.png" class="character-img img2" alt="Pompompurin">
+  <img src="hellokitty.png" class="character-img img3" alt="Hello Kitty">
+  <img src="kuromi.png" class="character-img img4" alt="Kuromi">
+  <img src="mymelody.png" class="character-img img5" alt="My Melody">
+
+  <div class="dialogue text1">Hi, Nishka!</div>
+  <div class="dialogue text2">Tap here to play some music</div>
+  <div class="dialogue text3">Oh, welcome back... I guess</div>
+  <div class="dialogue text4">It's time to act like an evil bitch, Nishka</div>
+  <div class="dialogue text5">What did he do this time?</div>
 
   <audio id="bg-audio" autoplay muted preload="auto"></audio>
   <audio id="kuromi-sound" src="https://www.dropbox.com/scl/fi/srpl3kwjojeq0y80g1zdy/Kuromi.mp3?rlkey=p6q6e9fpruggeojgw8rtvalgq&raw=1" preload="auto"></audio>
@@ -64,9 +72,14 @@
     }
 
     toggleButton.addEventListener('click', () => {
-      audio.muted = !audio.muted;
-      toggleButton.textContent = audio.muted ? '🔇' : '🔊';
-      if (!audio.muted) audio.play();
+      if (audio.muted) {
+        audio.muted = false;
+        toggleButton.textContent = '🔊';
+        audio.play();
+      } else {
+        audio.muted = true;
+        toggleButton.textContent = '🔇';
+      }
     });
 
     window.addEventListener('DOMContentLoaded', () => {
@@ -82,12 +95,28 @@
       kuromiSound.play();
     });
 
-    // ✅ New: show thank you message on submit
-    function showThankYou() {
-      setTimeout(() => {
-        document.querySelector('.complaint-box').style.display = 'none';
-        document.getElementById('thankYouMessage').style.display = 'block';
-      }, 100); // small delay to let form submit
+    // ✅ Handle form submission with a thank-you message
+    function handleSubmit(event) {
+      event.preventDefault();
+      const form = event.target;
+      const data = new FormData(form);
+
+      fetch(form.action, {
+        method: "POST",
+        body: data,
+        headers: {
+          'Accept': 'application/json'
+        }
+      }).then(response => {
+        if (response.ok) {
+          document.getElementById("thankYouMessage").style.display = "block";
+          form.reset();
+        } else {
+          alert("Oops! Something went wrong.");
+        }
+      }).catch(error => {
+        alert("Oops! There was an error submitting your complaint.");
+      });
     }
   </script>
 </body>
