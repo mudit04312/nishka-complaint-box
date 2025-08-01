@@ -130,29 +130,6 @@
       pointer-events: none;
       z-index: 2;
     }
-    .platform {
-      position: fixed;
-      height: 1px; 
-      background-color: #ff69b4;
-      z-index: 1;
-      border-radius: 50px; /* More curve */
-      opacity: 0.8;
-    }
-    #platform-group {
-      width: 100%;
-      left: 0;
-      top: calc(40% + 40px);
-    }
-    #platform-hello {
-      width: 100px;
-      left: 40px;
-      bottom: 0;
-    }
-    #platform-purin {
-      width: 80px;
-      right: 55px;
-      bottom: 0;
-    }
     @media (max-width: 480px) {
       h1 {
         font-size: 2rem;
@@ -176,10 +153,6 @@
   <img src="hellokitty.png" class="character-img img3" alt="Hello Kitty">
   <img src="kuromi.png" class="character-img img4" alt="Kuromi">
   <img src="mymelody.png" class="character-img img5" alt="My Melody">
-
-  <div class="platform" id="platform-group"></div>
-  <div class="platform" id="platform-hello"></div>
-  <div class="platform" id="platform-purin"></div>
 
   <audio id="bg-audio" autoplay muted preload="auto"></audio>
 
