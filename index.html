@@ -79,16 +79,17 @@
       position: absolute;
       width: 80px;
       opacity: 0.9;
-      z-index: 0;
+      z-index: 2;
+      touch-action: none;
     }
-    .img1 { top: 60%; left: 50%; transform: translate(-50%, -50%); width: 100px; opacity: 1; z-index: 2; }
-    .img2 { bottom: 15.5px; right: 60px; width: 90px; opacity: 1; z-index: 2; }
-    .img3 { bottom: 20px; left: 40px; width: 100px; opacity: 1; z-index: 2; }
-    .img4 { top: 60%; left: 5%; transform: translateY(-50%); width: 80px; opacity: 1; z-index: 2; }
-    .img5 { top: 60%; left: 80%; transform: translate(-50%, -50%); width: 80px; opacity: 1; z-index: 2; }
+    .img1 { top: 60%; left: 50%; transform: translate(-50%, -50%); width: 100px; }
+    .img2 { bottom: 15.5px; right: 60px; width: 90px; }
+    .img3 { bottom: 20px; left: 40px; width: 100px; }
+    .img4 { top: 60%; left: 5%; transform: translateY(-50%); width: 80px; }
+    .img5 { top: 60%; left: 80%; transform: translate(-50%, -50%); width: 80px; }
 
     .dialogue {
-      position: fixed;
+      position: absolute;
       font-family: 'Schoolbell', cursive;
       font-size: 1rem;
       color: white;
@@ -99,8 +100,7 @@
       max-width: 160px;
       text-align: center;
       z-index: 3;
-      pointer-events: auto;
-      cursor: move;
+      touch-action: none;
     }
     .dialogue::after {
       content: "";
@@ -187,41 +187,36 @@
     });
 
     audio.addEventListener('ended', playRandomSong);
-  </script>
 
-  <!-- DRAGGABLE SCRIPT -->
-  <script>
-    const makeDraggable = (selector) => {
+    // 🎯 Drag script for mobile
+    function makeTouchDrag(selector) {
       document.querySelectorAll(selector).forEach(elem => {
-        elem.setAttribute("draggable", "true");
-
-        elem.addEventListener("dragstart", (e) => {
+        elem.style.position = 'absolute';
+        elem.style.touchAction = 'none';
+        elem.addEventListener('touchstart', e => {
+          const touch = e.touches[0];
           const rect = elem.getBoundingClientRect();
-          e.dataTransfer.setData("text/plain", JSON.stringify({
-            offsetX: e.clientX - rect.left,
-            offsetY: e.clientY - rect.top,
-            id: elem.className
-          }));
+          elem.dataset.offsetX = touch.clientX - rect.left;
+          elem.dataset.offsetY = touch.clientY - rect.top;
+        });
+        elem.addEventListener('touchmove', e => {
+          e.preventDefault();
+          const touch = e.touches[0];
+          const x = touch.clientX - elem.dataset.offsetX;
+          const y = touch.clientY - elem.dataset.offsetY;
+          elem.style.left = x + 'px';
+          elem.style.top = y + 'px';
+        });
+        elem.addEventListener('touchend', () => {
+          console.log(`${elem.alt || elem.className} moved to top:${elem.style.top}, left:${elem.style.left}`);
         });
       });
+    }
 
-      document.body.addEventListener("dragover", e => e.preventDefault());
-
-      document.body.addEventListener("drop", e => {
-        e.preventDefault();
-        const data = JSON.parse(e.dataTransfer.getData("text/plain"));
-        const el = document.querySelector("." + data.id.split(" ").join("."));
-        if (el) {
-          el.style.left = (e.clientX - data.offsetX) + "px";
-          el.style.top = (e.clientY - data.offsetY) + "px";
-          el.style.position = "absolute";
-          el.style.transform = "none";
-        }
-      });
-    };
-
-    makeDraggable(".character-img");
-    makeDraggable(".dialogue");
+    window.addEventListener('DOMContentLoaded', () => {
+      makeTouchDrag('.character-img');
+      makeTouchDrag('.dialogue');
+    });
   </script>
 </body>
 </html>
