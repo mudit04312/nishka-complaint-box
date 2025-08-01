@@ -106,7 +106,14 @@
 .text1::after,
     .text2::after,
     .text3::after,
-    .text4::after,
+    .text4::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  border-width: 18px 5px 0 5px;
+  border-style: solid;
+  border-color: rgba(255, 105, 180, 0.3) transparent transparent transparent;
+}
     .text5::after {
       content: "";
       position: absolute;
@@ -116,17 +123,17 @@
       border-color: rgba(255, 105, 180, 0.3) transparent transparent transparent;
     }
 
-    .text1::after { left: 60%; }
+    .text1::after { left: 55%; }
     .text2::after { left: 20%; }
     .text3::after { left: 50%; transform: translateX(-50%); }
-    .text4::after { left: 20%; }
+    .text4::after { left: 17.5%; }
     .text5::after { right: 45%; }
 
     .text1 { top: 426.5px; left: 150px; }
     .text2 { top: 540px; left: 210px; }
     .text3 { top: 522.5px; left: 12px; }
     .text4 { top: 322px; left: 23px; }
-    .text5 { top: 327.5px; left: 220px; }
+    .text5 { top: 327.5px; left: 217.5px; }
 
     @media (max-width: 480px) {
       h1 {
