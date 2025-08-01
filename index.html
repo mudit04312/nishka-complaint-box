@@ -104,17 +104,25 @@
     }
 
     .text1::after,
-    .text2::after,
-    .text3::after,
-    .text4::after,
-    .text5::after {
-      content: "";
-      position: absolute;
-      top: 100%;
-      border-width: 10px;
-      border-style: solid;
-      border-color: rgba(255, 105, 180, 0.3) transparent transparent transparent;
-    }
+.text2::after,
+.text3::after,
+.text5::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  border-width: 10px;
+  border-style: solid;
+  border-color: rgba(255, 105, 180, 0.3) transparent transparent transparent;
+}
+
+.text4::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  border-width: 18px 5px 0 5px; /* sharper & narrower */
+  border-style: solid;
+  border-color: rgba(255, 105, 180, 0.3) transparent transparent transparent;
+}
 
     .text1::after { left: 30%; }
     .text2::after { right: 20%; }
