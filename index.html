@@ -89,37 +89,82 @@
     .img4 { top: 390px; left: 8.54167px; width: 95px; }
     .img5 { top: 410px; right: 8.54167px; width: 80px; }
 
-    /* === Dialogue Boxes (Fixed) === */
-    .dialogue {
-      position: absolute;
-      font-family: 'Schoolbell', cursive;
-      font-size: 1rem;
-      color: white;
-      background-color: rgba(255, 105, 180, 0.3);
-      padding: 10px 15px;
-      border-radius: 20px;
-      backdrop-filter: blur(2px);
-      max-width: 160px;
-      text-align: center;
-      z-index: 3;
-    }
-    .dialogue::after {
-      content: "";
-      position: absolute;
-      bottom: -10px;
-      left: 50%;
-      transform: translateX(-50%);
-      border-width: 10px;
-      border-style: solid;
-      border-color: rgba(255, 105, 180, 0.3) transparent transparent transparent;
-    }
-    .text1 { top: 449.142px; left: 190.126px; }
-    .text2 { top: 599.449px; left: 307.156px; }
-    .text3 { top: 586.958px; left: 80.8434px; }
-    .text4 { top: 372.778px; left: 21.6865px; }
-    .text5 { top: 319.104px; left: 316.527px; }
+    /* === Dialogue Boxes (Character-Specific Styles) === */
+.dialogue {
+  position: absolute;
+  font-family: 'Schoolbell', cursive;
+  font-size: 1rem;
+  color: white;
+  background-color: rgba(255, 105, 180, 0.3);
+  padding: 10px 15px;
+  border-radius: 20px;
+  backdrop-filter: blur(2px);
+  max-width: 160px;
+  text-align: center;
+  z-index: 3;
+}
 
-    @media (max-width: 480px) {
+/* === Unique speech bubble tails === */
+.text1::after { /* Cinnamoroll: cheerful, casual bubble */
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 30%;
+  border-width: 10px;
+  border-style: solid;
+  border-color: rgba(255, 105, 180, 0.3) transparent transparent transparent;
+}
+
+.text2::after { /* Pompompurin: calm, gentle */
+  content: "";
+  position: absolute;
+  top: 100%;
+  right: 25%;
+  border-width: 10px;
+  border-style: solid;
+  border-color: rgba(255, 105, 180, 0.3) transparent transparent transparent;
+}
+
+.text3::after { /* Hello Kitty: soft but passive-aggressive */
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 10px;
+  border-style: solid;
+  border-color: rgba(255, 105, 180, 0.3) transparent transparent transparent;
+}
+
+.text4::after { /* Kuromi: sharp tone */
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 40%;
+  border-width: 10px;
+  border-style: solid;
+  border-color: rgba(255, 105, 180, 0.3) transparent transparent transparent;
+  transform: rotate(-10deg);
+}
+
+.text5::after { /* My Melody: concerned but sweet */
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  right: 30%;
+  border-width: 10px;
+  border-style: solid;
+  border-color: rgba(255, 105, 180, 0.3) transparent transparent transparent;
+}
+
+/* === Positions (unchanged unless needed) === */
+.text1 { top: 449.142px; left: 190.126px; }     /* Cinnamoroll: "HI, Nishka!" */
+.text2 { top: 599.449px; left: 307.156px; }     /* Pompompurin: "Here, play some music" */
+.text3 { top: 586.958px; left: 80.8434px; }     /* Hello Kitty: "Oh, welcome back... I guess" */
+.text4 { top: 372.778px; left: 21.6865px; }     /* Kuromi: "Time to act like an evil bitch" */
+.text5 { top: 319.104px; left: 316.527px; }     /* My Melody: "What did he do this time?" */
+
+@media (max-width: 480px) {
       h1 {
         font-size: 2rem;
       }
