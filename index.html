@@ -87,11 +87,64 @@
       font-family: 'Slackey', cursive;
     }
 
-    .text1 { top: 120px; left: 130px; }
-    .text2 { top: 250px; right: 130px; }
-    .text3 { bottom: 180px; left: 140px; }
-    .text4 { bottom: 250px; right: 150px; }
-    .text5 { bottom: 80px; left: 50%; transform: translateX(-50%); }
+    .text1::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      border-width: 10px 3px 0 3px;
+      border-style: solid;
+      border-color: rgba(255, 105, 180, 0.3) transparent transparent transparent;
+    }
+    .text3::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      border-width: 10px;
+      border-style: solid;
+      border-color: rgba(255, 105, 180, 0.3) transparent transparent transparent;
+    }
+    .text2::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      border-width: 18px 4px 0 4px;
+      border-style: solid;
+      border-color: rgba(255, 105, 180, 0.3) transparent transparent transparent;
+    }
+    .text5::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      border-width: 20px 4px 0 4px;
+      border-style: solid;
+      border-color: rgba(255, 105, 180, 0.3) transparent transparent transparent;
+    }
+    .text4::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      border-width: 18px 5px 0 5px;
+      border-style: solid;
+      border-color: rgba(255, 105, 180, 0.3) transparent transparent transparent;
+    }
+
+    .text1::after { left: 60%; }
+    .text2::after { left: 25%; }
+    .text3::after { left: 50%; transform: translateX(-50%); }
+    .text4::after { left: 17.5%; }
+    .text5::after { right: 22.25%; }
+
+    .text1 { top: 419px; left: 150px; }
+    .text2 { top: 540px; left: 210px; }
+    .text3 { top: 520px; left: 12px; }
+    .text4 { top: 320px; left: 23px; }
+    .text5 { top: 327.5px; left: 217.5px; }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 1.9rem;
+      }
+    }
   </style>
 </head>
 <body>
