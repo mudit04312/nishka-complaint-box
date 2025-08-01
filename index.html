@@ -7,84 +7,100 @@
   <link rel="icon" href="favicon.png" type="image/png">
   <link href="https://fonts.googleapis.com/css2?family=Princess+Sofia&family=Schoolbell&family=Freckle+Face&family=Slackey&display=swap" rel="stylesheet">
   <style>
+    * {
+      box-sizing: border-box;
+    }
     body {
-      margin: 0;
-      padding: 0;
-      background-color: pink;
+      position: relative;
+      background-color: #43001A;
       font-family: 'Schoolbell', cursive;
-      overflow-x: hidden;
-    }
-
-    h1 {
-      text-align: center;
-      margin-top: 1.2rem;
-      font-size: 2rem;
-    }
-
-    .complaint-box {
+      margin: 0;
+      padding: 12px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      margin: 1rem auto;
+      overflow-x: hidden;
     }
-
-    .complaint-box textarea {
-      width: 80%;
+    h1 {
+      color: #ff69b4;
+      font-size: 2rem;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .complaint-box {
+      background-color: rgba(67, 0, 26, 0.3);
+      border: 2px solid #ff69b4;
+      border-radius: 20px;
+      padding: 20px;
+      width: 100%;
+      max-width: 400px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      backdrop-filter: blur(2px);
+      z-index: 1;
+    }
+    textarea {
+      width: 100%;
       height: 100px;
       padding: 10px;
-      font-size: 1rem;
-      border: 2px dashed #000;
       border-radius: 10px;
+      border: 2px solid #ff69b4;
+      background-color: rgba(255, 255, 255, 0.1);
+      color: white;
+      font-family: 'Schoolbell', cursive;
+      font-size: 1rem;
       resize: none;
-      font-family: 'Freckle Face', cursive;
     }
-
-    .complaint-box button {
-      margin-top: 0.7rem;
-      font-size: 1.2rem;
-      padding: 0.4rem 1rem;
+    textarea::placeholder {
+      font-size: 1rem;
+      color: #ccc;
+    }
+    button[type="submit"] {
+      margin: 15px auto 0;
+      display: block;
+      padding: 10px 22.5px;
+      background-color: #ff69b4;
       border: none;
       border-radius: 10px;
-      background-color: #000;
-      color: #fff;
+      color: white;
+      font-size: 1rem;
       cursor: pointer;
-      font-family: 'Slackey', cursive;
     }
-
     #toggle-sound {
       position: fixed;
-      top: 1rem;
-      right: 1rem;
-      font-size: 1.3rem;
-      padding: 0.3rem 0.7rem;
-      border-radius: 10px;
-      background-color: #000;
-      color: #fff;
+      bottom: 20px;
+      right: 20px;
+      font-size: 1.5rem;
+      background: none;
+      border: none;
       cursor: pointer;
-      z-index: 100;
+      color: #ff69b4;
     }
 
     .character-img {
       position: absolute;
-      width: 100px;
-      height: auto;
+      width: 80px;
+      opacity: 0.9;
+      z-index: 2;
+      cursor: pointer;
     }
-
-    .img1 { top: 50px; left: 20px; }
-    .img2 { top: 200px; right: 20px; }
-    .img3 { bottom: 100px; left: 30px; }
-    .img4 { bottom: 150px; right: 40px; cursor: pointer; }
-    .img5 { bottom: 20px; left: 50%; transform: translateX(-50%); }
+    .img1 { top: 442.5px; left: 140px; width: 120px; }
+    .img2 { top: 612px; left: 226px; width: 90px; }
+    .img3 { top: 590px; left: 43.8955px; width: 100px; }
+    .img4 { top: 387.5px; left: 8.54167px; width: 95px; }
+    .img5 { top: 410px; right: 8.54167px; width: 80px; }
 
     .dialogue {
       position: absolute;
+      font-family: 'Schoolbell', cursive;
+      font-size: 1rem;
+      color: white;
+      background-color: rgba(255, 105, 180, 0.3);
+      padding: 10px 15px;
+      border-radius: 20px;
+      backdrop-filter: blur(2px);
       max-width: 160px;
-      padding: 10px;
-      background-color: #fff;
-      border: 2px solid #000;
-      border-radius: 15px;
-      font-size: 0.9rem;
-      font-family: 'Slackey', cursive;
+      text-align: center;
+      z-index: 3;
     }
 
     .text1::after {
