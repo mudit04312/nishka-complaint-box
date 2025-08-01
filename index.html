@@ -92,67 +92,31 @@
       position: absolute;
       font-family: 'Schoolbell', cursive;
       font-size: 1rem;
-      color: white;
-      background-color: rgba(255, 105, 180, 0.3);
+      color: black;
+      background-color: white;
+      border: 2px solid black;
       padding: 10px 15px;
       border-radius: 20px;
-      backdrop-filter: blur(2px);
       max-width: 160px;
       text-align: center;
       z-index: 3;
     }
 
-    /* === Unique tails for each dialogue bubble === */
-    .text1::after {
+    .dialogue::after {
       content: "";
       position: absolute;
       top: 100%;
-      left: 30%;
       border-width: 10px;
       border-style: solid;
-      border-color: rgba(255, 105, 180, 0.3) transparent transparent transparent;
+      border-color: white transparent transparent transparent;
+      filter: drop-shadow(0 0 0 black);
     }
 
-    .text2::after {
-      content: "";
-      position: absolute;
-      top: 100%;
-      right: 20%;
-      border-width: 10px;
-      border-style: solid;
-      border-color: rgba(255, 105, 180, 0.3) transparent transparent transparent;
-    }
-
-    .text3::after {
-      content: "";
-      position: absolute;
-      top: 100%;
-      left: 50%;
-      transform: translateX(-50%);
-      border-width: 10px;
-      border-style: solid;
-      border-color: rgba(255, 105, 180, 0.3) transparent transparent transparent;
-    }
-
-    .text4::after {
-      content: "";
-      position: absolute;
-      top: 100%;
-      left: 40%;
-      border-width: 10px;
-      border-style: solid;
-      border-color: rgba(255, 105, 180, 0.3) transparent transparent transparent;
-    }
-
-    .text5::after {
-      content: "";
-      position: absolute;
-      top: 100%;
-      right: 35%;
-      border-width: 10px;
-      border-style: solid;
-      border-color: rgba(255, 105, 180, 0.3) transparent transparent transparent;
-    }
+    .text1::after { left: 30%; }
+    .text2::after { right: 20%; }
+    .text3::after { left: 50%; transform: translateX(-50%); }
+    .text4::after { left: 40%; }
+    .text5::after { right: 35%; }
 
     .text1 { top: 427.5px; left: 150px; }
     .text2 { top: 535px; left: 250px; }
@@ -189,6 +153,7 @@
   <div class="dialogue text5">What did he do this time?</div>
 
   <audio id="bg-audio" autoplay muted preload="auto"></audio>
+  <audio id="kuromi-sound" src="https://www.dropbox.com/scl/fi/srpl3kwjojeq0y80g1zdy/Kuromi.mp3?rlkey=p6q6e9fpruggeojgw8rtvalgq&raw=1" preload="auto"></audio>
 
   <script>
     const audio = document.getElementById('bg-audio');
@@ -229,6 +194,13 @@
     });
 
     audio.addEventListener('ended', playRandomSong);
+
+    // Kuromi sound effect
+    document.querySelector('.img4').addEventListener('click', () => {
+      const kuromiSound = document.getElementById('kuromi-sound');
+      kuromiSound.currentTime = 0;
+      kuromiSound.play();
+    });
   </script>
 </body>
 </html>
