@@ -113,7 +113,14 @@
       border-style: solid;
       border-color: rgba(255, 105, 180, 0.3) transparent transparent transparent;
     }
-    .text5::after,
+    .text5::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  border-width: 20px 4px 0 4px;
+  border-style: solid;
+  border-color: rgba(255, 105, 180, 0.3) transparent transparent transparent;
+}
     .text4::after {
   content: "";
   position: absolute;
@@ -127,7 +134,7 @@
     .text2::after { left: 20%; }
     .text3::after { left: 50%; transform: translateX(-50%); }
     .text4::after { left: 17.5%; }
-    .text5::after { right: 25%; }
+    .text5::after { right: 22.5%; }
 
     .text1 { top: 421.5px; left: 150px; }
     .text2 { top: 540px; left: 210px; }
