@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
   <title>Nishka's Complaint Box</title>
-  <link href="https://fonts.googleapis.com/css2?family=Princess+Sofia&family=Schoolbell&family=Freckle+Face&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Princess+Sofia&family=Schoolbell&family=Freckle+Face&family=Slackey&display=swap" rel="stylesheet">
   <style>
     * {
       box-sizing: border-box;
@@ -21,7 +21,6 @@
       overflow-x: hidden;
     }
     h1 {
-      font-family: 'Princess Sofia', cursive;
       color: #ff69b4;
       font-size: 2rem;
       margin-bottom: 20px;
@@ -104,13 +103,13 @@
     }
 
     .text1::after {
-  content: "";
-  position: absolute;
-  top: 100%;
-  border-width: 10px 3px 0 3px;
-  border-style: solid;
-  border-color: rgba(255, 105, 180, 0.3) transparent transparent transparent;
-}
+      content: "";
+      position: absolute;
+      top: 100%;
+      border-width: 10px 3px 0 3px;
+      border-style: solid;
+      border-color: rgba(255, 105, 180, 0.3) transparent transparent transparent;
+    }
     .text3::after {
       content: "";
       position: absolute;
@@ -128,21 +127,21 @@
       border-color: rgba(255, 105, 180, 0.3) transparent transparent transparent;
     }
     .text5::after {
-  content: "";
-  position: absolute;
-  top: 100%;
-  border-width: 20px 4px 0 4px;
-  border-style: solid;
-  border-color: rgba(255, 105, 180, 0.3) transparent transparent transparent;
-}
+      content: "";
+      position: absolute;
+      top: 100%;
+      border-width: 20px 4px 0 4px;
+      border-style: solid;
+      border-color: rgba(255, 105, 180, 0.3) transparent transparent transparent;
+    }
     .text4::after {
-  content: "";
-  position: absolute;
-  top: 100%;
-  border-width: 18px 5px 0 5px;
-  border-style: solid;
-  border-color: rgba(255, 105, 180, 0.3) transparent transparent transparent;
-}
+      content: "";
+      position: absolute;
+      top: 100%;
+      border-width: 18px 5px 0 5px;
+      border-style: solid;
+      border-color: rgba(255, 105, 180, 0.3) transparent transparent transparent;
+    }
 
     .text1::after { left: 60%; }
     .text2::after { left: 25%; }
@@ -165,10 +164,12 @@
 </head>
 <body>
   <h1>
-  <span style="font-family: 'Princess Sofia', cursive; font-size: 1.9rem;">🎀 Nishka's</span><span style="font-family: 'Freckle Face'; font-size: 1.5rem;"> Complaint Box </span><span style="font-family: 'Princess Sofia', cursive; font-size: 1.9rem;">🎀
-  </span>
+    <span style="font-family: 'Princess Sofia', cursive; font-size: 1.9rem;">🎀 Nishka's</span>
+    <span style="font-family: 'Slackey', cursive; font-size: 1.5rem;"> Complaint Box </span>
+    <span style="font-family: 'Princess Sofia', cursive; font-size: 1.9rem;">🎀</span>
   </h1>
-<form class="complaint-box" method="POST" action="#">
+
+  <form class="complaint-box" method="POST" action="#">
     <textarea name="complaint" placeholder="Type your royal complaint, princess <3" required></textarea>
     <button type="submit">🤬📤</button>
   </form>
