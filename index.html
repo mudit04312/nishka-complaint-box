@@ -2,22 +2,18 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Nishka's Complaint Box</title>
   <link href="https://fonts.googleapis.com/css2?family=Princess+Sofia&family=Schoolbell&display=swap" rel="stylesheet">
   <style>
-    * {
-      box-sizing: border-box;
-    }
     body {
-      position: relative;
+      margin: 0;
       background-color: #43001A;
       font-family: 'Schoolbell', cursive;
-      margin: 0;
-      padding: 20px;
       display: flex;
       flex-direction: column;
       align-items: center;
+      padding: 20px;
       overflow-x: hidden;
     }
     h1 {
@@ -48,15 +44,9 @@
       color: white;
       font-family: 'Schoolbell', cursive;
       font-size: 1rem;
-      resize: none;
-    }
-    textarea::placeholder {
-      font-size: 1.1rem;
-      color: #ccc;
     }
     button[type="submit"] {
-      margin: 15px auto 0;
-      display: block;
+      margin-top: 15px;
       padding: 10px 20px;
       background-color: #ff69b4;
       border: none;
@@ -65,127 +55,87 @@
       font-size: 1rem;
       cursor: pointer;
     }
-    #toggle-sound {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      font-size: 1.5rem;
-      background: none;
-      border: none;
-      cursor: pointer;
-      color: #ff69b4;
-    }
     .character-img {
-      position: absolute;
-      width: 80px;
-      opacity: 0.9;
-      pointer-events: none;
-      z-index: 0;
-    }
-    .img1 {
       position: fixed;
-      top: 60%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 100px;
-      opacity: 1;
-      pointer-events: none;
-      z-index: 2;
-    }
-    .img2 {
-      position: fixed;
-      bottom: 15.5px;
-      right: 60px;
       width: 90px;
-      opacity: 1;
-      pointer-events: none;
       z-index: 2;
-    }
-    .img3 {
-      position: fixed;
-      bottom: 20px;
-      left: 40px;
-      width: 100px;
-      opacity: 1;
       pointer-events: none;
-      z-index: 2;
     }
-    .img4 {
-      position: fixed;
-      top: 60%;
-      left: 5%;
-      transform: translateY(-50%);
-      width: 80px;
-      opacity: 1;
-      pointer-events: none;
-      z-index: 2;
-    }
-    .img5 {
-      position: fixed;
-      top: 60%;
-      left: 80%;
-      transform: translate(-50%, -50%);
-      width: 80px;
-      opacity: 1;
-      pointer-events: none;
-      z-index: 2;
-    }
+    .img1 { top: 50%; left: 50%; transform: translate(-50%, -50%); }
+    .img2 { bottom: 15px; right: 60px; }
+    .img3 { bottom: 20px; left: 40px; }
+    .img4 { top: 50%; left: 5%; transform: translateY(-50%); }
+    .img5 { top: 50%; left: 80%; transform: translate(-50%, -50%); }
 
-    /* 🗨️ Speech Bubbles */
-    .dialogue {
+    .bubble {
       position: fixed;
-      font-family: 'Schoolbell', cursive;
-      font-size: 1rem;
-      color: white;
-      background-color: rgba(255, 105, 180, 0.2);
-      padding: 6px 10px;
-      border-radius: 10px;
-      backdrop-filter: blur(1.5px);
       max-width: 140px;
-      text-align: center;
-      pointer-events: none;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 10px;
+      border-radius: 15px;
+      font-size: 1rem;
+      color: #43001A;
+      font-family: 'Schoolbell', cursive;
+      display: none;
       z-index: 3;
     }
-    .text1 {
-      top: calc(60% - 90px); /* Cinnamoroll */
-      left: 50%;
-      transform: translateX(-50%);
-    }
-    .text2 {
-      bottom: 120px; /* Pompompurin */
-      right: 60px;
-    }
-    .text3 {
-      bottom: 130px; /* Hello Kitty */
-      left: 40px;
-    }
-    .text4 {
-      top: calc(60% - 80px); /* Kuromi */
-      left: 5%;
-    }
-    .text5 {
-      top: calc(60% - 80px); /* My Melody */
-      left: 80%;
-      transform: translateX(-50%);
+
+    .bubble::after {
+      content: "";
+      position: absolute;
+      border-style: solid;
     }
 
-    @media (max-width: 480px) {
-      h1 {
-        font-size: 2rem;
-      }
+    .img1:hover ~ .text1,
+    .img2:hover ~ .text2,
+    .img3:hover ~ .text3,
+    .img4:hover ~ .text4,
+    .img5:hover ~ .text5 {
+      display: block;
+    }
+
+    .text1 { top: 40%; left: 50%; transform: translateX(-50%); }
+    .text1::after {
+      top: 100%; left: 50%; transform: translateX(-50%);
+      border-width: 10px 10px 0;
+      border-color: white transparent transparent transparent;
+    }
+
+    .text2 { bottom: 110px; right: 60px; }
+    .text2::after {
+      top: 100%; left: 20%;
+      border-width: 10px 10px 0;
+      border-color: white transparent transparent transparent;
+    }
+
+    .text3 { bottom: 120px; left: 40px; }
+    .text3::after {
+      top: 100%; left: 30%;
+      border-width: 10px 10px 0;
+      border-color: white transparent transparent transparent;
+    }
+
+    .text4 { top: 40%; left: 5%; }
+    .text4::after {
+      top: 100%; left: 25%;
+      border-width: 10px 10px 0;
+      border-color: white transparent transparent transparent;
+    }
+
+    .text5 { top: 40%; left: 80%; transform: translateX(-50%); }
+    .text5::after {
+      top: 100%; left: 50%; transform: translateX(-50%);
+      border-width: 10px 10px 0;
+      border-color: white transparent transparent transparent;
     }
   </style>
 </head>
 <body>
-
   <h1>Nishka's Complaint Box</h1>
-
-  <form class="complaint-box" method="POST" action="#">
-    <textarea name="complaint" placeholder="Type your royal complaint, princess <3" required></textarea>
+  <form class="complaint-box">
+    <textarea placeholder="Type your royal complaint, princess <3" required></textarea>
     <button type="submit">🤬📤</button>
   </form>
-
-  <button id="toggle-sound">🔇</button>
 
   <img src="Cinnamoroll.png" class="character-img img1" alt="Cinnamoroll">
   <img src="Pompompurin.png" class="character-img img2" alt="Pompompurin">
@@ -193,54 +143,11 @@
   <img src="kuromi.png" class="character-img img4" alt="Kuromi">
   <img src="mymelody.png" class="character-img img5" alt="My Melody">
 
-  <!-- ✨ Dialogue Texts -->
-  <div class="dialogue text1">HI, Nishka!</div>
-  <div class="dialogue text2">Here, play some music</div>
-  <div class="dialogue text3">Oh, welcome back... I guess</div>
-  <div class="dialogue text4">Time to act like an evil bitch</div>
-  <div class="dialogue text5">What did he do this time?</div>
-
-  <audio id="bg-audio" autoplay muted preload="auto"></audio>
-
-  <script>
-    const audio = document.getElementById('bg-audio');
-    const toggleButton = document.getElementById('toggle-sound');
-
-    const songs = [
-      'https://www.dropbox.com/scl/fi/d7fhsnuinvk2hdexfqrml/Connie-Francis-Pretty-Little-Baby-Official-Audio.mp3?rlkey=k1kyk3s6vfieqgr5itpvw4w7v&raw=1',
-      'https://www.dropbox.com/scl/fi/ab1yk30e5p01eh2gm3fqq/FNAF-Security-Breach-OST_-Daycare-Theme.mp3?rlkey=671ecd6rmk1i3pqvjhtbrs7od&raw=1',
-      'https://www.dropbox.com/scl/fi/xae54vgewwtzfdldounrs/blue-instrumental.mp3?rlkey=zv8a7m723obj6i8k18giproxe&raw=1',
-      'https://www.dropbox.com/scl/fi/u9a3obvxmcu8onrswsbmj/the-cat-from-ipanema.mp3?rlkey=sku5g7zeie5jfrbv85ux31cxr&raw=1',
-      'https://www.dropbox.com/scl/fi/1KF02wcoKUV1nb3zfIIyOgksfvC-9on5G/tsundere.mp3?rlkey=z3o2zzrjnpw8n5khgg1h8j1d8&raw=1'
-    ];
-
-    function getRandomSong() {
-      const randomIndex = Math.floor(Math.random() * songs.length);
-      return songs[randomIndex];
-    }
-
-    function playRandomSong() {
-      audio.src = getRandomSong();
-      audio.play();
-    }
-
-    toggleButton.addEventListener('click', () => {
-      if (audio.muted) {
-        audio.muted = false;
-        toggleButton.textContent = '🔊';
-        audio.play();
-      } else {
-        audio.muted = true;
-        toggleButton.textContent = '🔇';
-      }
-    });
-
-    window.addEventListener('DOMContentLoaded', () => {
-      audio.src = getRandomSong();
-      audio.play();
-    });
-
-    audio.addEventListener('ended', playRandomSong);
-  </script>
+  <!-- Speech Bubbles -->
+  <div class="bubble text1">Hi, Nishka!</div>
+  <div class="bubble text2">Here, play some music</div>
+  <div class="bubble text3">Oh, welcome back... I guess</div>
+  <div class="bubble text4">Time to act like an evil bitch</div>
+  <div class="bubble text5">What did he do this time?</div>
 </body>
 </html>
