@@ -10,7 +10,7 @@
       box-sizing: border-box;
     }
     body {
-      position: relative; /* Needed for absolutely positioned images */
+      position: relative;
       background-color: #43001A;
       font-family: 'Schoolbell', cursive;
       margin: 0;
@@ -36,6 +36,7 @@
       max-width: 400px;
       box-shadow: 0 4px 8px rgba(0,0,0,0.2);
       backdrop-filter: blur(2px);
+      z-index: 1;
     }
     textarea {
       width: 100%;
@@ -74,15 +75,18 @@
       cursor: pointer;
       color: #ff69b4;
     }
-
-    .random-image {
+    .character-img {
       position: absolute;
       width: 80px;
-      height: auto;
+      opacity: 0.9;
       pointer-events: none;
       z-index: 0;
-      opacity: 0.9;
     }
+    .img1 { top: 50px; left: 30px; }
+    .img2 { top: 150px; right: 40px; }
+    .img3 { bottom: 100px; left: 60px; }
+    .img4 { top: 250px; right: 120px; }
+    .img5 { bottom: 50px; right: 80px; }
 
     @media (max-width: 480px) {
       h1 {
@@ -97,10 +101,17 @@
 
   <form class="complaint-box" method="POST" action="#">
     <textarea name="complaint" placeholder="Type your royal complaint, princess <3" required></textarea>
-    <button type="submit">🤬📤</button>
+    <button type="submit">🨬📤</button>
   </form>
 
   <button id="toggle-sound">🔇</button>
+
+  <!-- Fixed PNG characters in non-random positions -->
+  <img src="Cinnamoroll.png" class="character-img img1" alt="Cinnamoroll">
+  <img src="Pompompurin.png" class="character-img img2" alt="Pompompurin">
+  <img src="hellokitty.png" class="character-img img3" alt="Hello Kitty">
+  <img src="kuromi.png" class="character-img img4" alt="Kuromi">
+  <img src="mymelody.png" class="character-img img5" alt="My Melody">
 
   <audio id="bg-audio" autoplay muted preload="auto"></audio>
 
@@ -137,33 +148,9 @@
       }
     });
 
-    // Play song on load
     window.addEventListener('DOMContentLoaded', () => {
       audio.src = getRandomSong();
       audio.play();
-
-      // Place 5 random PNGs
-      const imageNames = [
-        'Cinnamoroll.png',
-        'Pompompurin.png',
-        'hellokitty.png',
-        'kuromi.png',
-        'mymelody.png'
-      ];
-
-      imageNames.forEach(name => {
-        const img = document.createElement('img');
-        img.src = name;
-        img.className = 'random-image';
-
-        const x = Math.random() * (window.innerWidth - 100);
-        const y = Math.random() * (window.innerHeight - 100);
-
-        img.style.left = `${x}px`;
-        img.style.top = `${y}px`;
-
-        document.body.appendChild(img);
-      });
     });
 
     audio.addEventListener('ended', playRandomSong);
