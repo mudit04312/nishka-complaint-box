@@ -7,8 +7,91 @@
   <link rel="icon" href="favicon.png" type="image/png">
   <link href="https://fonts.googleapis.com/css2?family=Princess+Sofia&family=Schoolbell&family=Freckle+Face&family=Slackey&display=swap" rel="stylesheet">
   <style>
-    /* (No changes made to your CSS, all intact) */
-    /* All your original styles go here... (already in your pasted code) */
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: pink;
+      font-family: 'Schoolbell', cursive;
+      overflow-x: hidden;
+    }
+
+    h1 {
+      text-align: center;
+      margin-top: 1.2rem;
+      font-size: 2rem;
+    }
+
+    .complaint-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 1rem auto;
+    }
+
+    .complaint-box textarea {
+      width: 80%;
+      height: 100px;
+      padding: 10px;
+      font-size: 1rem;
+      border: 2px dashed #000;
+      border-radius: 10px;
+      resize: none;
+      font-family: 'Freckle Face', cursive;
+    }
+
+    .complaint-box button {
+      margin-top: 0.7rem;
+      font-size: 1.2rem;
+      padding: 0.4rem 1rem;
+      border: none;
+      border-radius: 10px;
+      background-color: #000;
+      color: #fff;
+      cursor: pointer;
+      font-family: 'Slackey', cursive;
+    }
+
+    #toggle-sound {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      font-size: 1.3rem;
+      padding: 0.3rem 0.7rem;
+      border-radius: 10px;
+      background-color: #000;
+      color: #fff;
+      cursor: pointer;
+      z-index: 100;
+    }
+
+    .character-img {
+      position: absolute;
+      width: 100px;
+      height: auto;
+    }
+
+    .img1 { top: 50px; left: 20px; }
+    .img2 { top: 200px; right: 20px; }
+    .img3 { bottom: 100px; left: 30px; }
+    .img4 { bottom: 150px; right: 40px; cursor: pointer; }
+    .img5 { bottom: 20px; left: 50%; transform: translateX(-50%); }
+
+    .dialogue {
+      position: absolute;
+      max-width: 160px;
+      padding: 10px;
+      background-color: #fff;
+      border: 2px solid #000;
+      border-radius: 15px;
+      font-size: 0.9rem;
+      font-family: 'Slackey', cursive;
+    }
+
+    .text1 { top: 120px; left: 130px; }
+    .text2 { top: 250px; right: 130px; }
+    .text3 { bottom: 180px; left: 140px; }
+    .text4 { bottom: 250px; right: 150px; }
+    .text5 { bottom: 80px; left: 50%; transform: translateX(-50%); }
   </style>
 </head>
 <body>
@@ -18,13 +101,12 @@
     <span style="font-family: 'Princess Sofia', cursive; font-size: 1.7rem;">🎀</span>
   </h1>
 
-  <!-- ✅ Updated form action -->
-  <form class="complaint-box" method="POST" action="https://formspree.io/f/xblkkpqa">
+  <!-- ✅ Updated form with JS handling -->
+  <form id="complaint-form" class="complaint-box">
     <textarea name="complaint" placeholder="Type your royal complaint, princess <3" required></textarea>
     <button type="submit">🤬📤</button>
   </form>
 
-  <!-- Everything else remains unchanged -->
   <button id="toggle-sound">🔇</button>
 
   <img src="Cinnamoroll.png" class="character-img img1" alt="Cinnamoroll">
@@ -43,6 +125,29 @@
   <audio id="kuromi-sound" src="https://www.dropbox.com/scl/fi/srpl3kwjojeq0y80g1zdy/Kuromi.mp3?rlkey=p6q6e9fpruggeojgw8rtvalgq&raw=1" preload="auto"></audio>
 
   <script>
+    // Formspree submission
+    document.getElementById("complaint-form").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const formData = new FormData(this);
+      fetch("https://formspree.io/f/xblkkpqa", {
+        method: "POST",
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+      })
+      .then(response => {
+        if (response.ok) {
+          alert("🎀 Complaint submitted successfully!");
+          this.reset();
+        } else {
+          alert("🚫 There was a problem submitting your complaint.");
+        }
+      })
+      .catch(() => {
+        alert("❌ Network error. Please try again.");
+      });
+    });
+
+    // Music & character interaction
     const audio = document.getElementById('bg-audio');
     const toggleButton = document.getElementById('toggle-sound');
 
