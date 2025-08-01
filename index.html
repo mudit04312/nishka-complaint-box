@@ -7,15 +7,159 @@
   <link rel="icon" href="favicon.png" type="image/png">
   <link href="https://fonts.googleapis.com/css2?family=Princess+Sofia&family=Schoolbell&family=Freckle+Face&family=Slackey&display=swap" rel="stylesheet">
   <style>
-    /* (Your entire CSS remains unchanged) */
-    /* ... keeping everything from your original code ... */
-    /* Just adding this at the end for the thank-you message */
-    .thank-you {
-      display: none;
-      margin-top: 20px;
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      position: relative;
+      background-color: #43001A;
+      font-family: 'Schoolbell', cursive;
+      margin: 0;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow-x: hidden;
+    }
+    h1 {
       color: #ff69b4;
-      font-size: 1.2rem;
+      font-size: 2rem;
+      margin-bottom: 20px;
       text-align: center;
+    }
+    .complaint-box {
+      background-color: rgba(67, 0, 26, 0.3);
+      border: 2px solid #ff69b4;
+      border-radius: 20px;
+      padding: 20px;
+      width: 100%;
+      max-width: 400px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      backdrop-filter: blur(2px);
+      z-index: 1;
+    }
+    textarea {
+      width: 100%;
+      height: 100px;
+      padding: 10px;
+      border-radius: 10px;
+      border: 2px solid #ff69b4;
+      background-color: rgba(255, 255, 255, 0.1);
+      color: white;
+      font-family: 'Schoolbell', cursive;
+      font-size: 1rem;
+      resize: none;
+    }
+    textarea::placeholder {
+      font-size: 1rem;
+      color: #ccc;
+    }
+    button[type="submit"] {
+      margin: 15px auto 0;
+      display: block;
+      padding: 10px 22.5px;
+      background-color: #ff69b4;
+      border: none;
+      border-radius: 10px;
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    #toggle-sound {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      font-size: 1.5rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #ff69b4;
+    }
+
+    .character-img {
+      position: absolute;
+      width: 80px;
+      opacity: 0.9;
+      z-index: 2;
+      cursor: pointer;
+    }
+    .img1 { top: 442.5px; left: 140px; width: 120px; }
+    .img2 { top: 612px; left: 226px; width: 90px; }
+    .img3 { top: 590px; left: 43.8955px; width: 100px; }
+    .img4 { top: 387.5px; left: 8.54167px; width: 95px; }
+    .img5 { top: 410px; right: 8.54167px; width: 80px; }
+
+    .dialogue {
+      position: absolute;
+      font-family: 'Schoolbell', cursive;
+      font-size: 1rem;
+      color: white;
+      background-color: rgba(255, 105, 180, 0.3);
+      padding: 10px 15px;
+      border-radius: 20px;
+      backdrop-filter: blur(2px);
+      max-width: 160px;
+      text-align: center;
+      z-index: 3;
+    }
+
+    .text1::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      border-width: 10px 3px 0 3px;
+      border-style: solid;
+      border-color: rgba(255, 105, 180, 0.3) transparent transparent transparent;
+    }
+    .text3::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      border-width: 10px;
+      border-style: solid;
+      border-color: rgba(255, 105, 180, 0.3) transparent transparent transparent;
+    }
+    .text2::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      border-width: 18px 4px 0 4px;
+      border-style: solid;
+      border-color: rgba(255, 105, 180, 0.3) transparent transparent transparent;
+    }
+    .text5::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      border-width: 20px 4px 0 4px;
+      border-style: solid;
+      border-color: rgba(255, 105, 180, 0.3) transparent transparent transparent;
+    }
+    .text4::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      border-width: 18px 5px 0 5px;
+      border-style: solid;
+      border-color: rgba(255, 105, 180, 0.3) transparent transparent transparent;
+    }
+
+    .text1::after { left: 60%; }
+    .text2::after { left: 25%; }
+    .text3::after { left: 50%; transform: translateX(-50%); }
+    .text4::after { left: 17.5%; }
+    .text5::after { right: 22.25%; }
+
+    .text1 { top: 419px; left: 150px; }
+    .text2 { top: 540px; left: 210px; }
+    .text3 { top: 520px; left: 12px; }
+    .text4 { top: 320px; left: 23px; }
+    .text5 { top: 327.5px; left: 217.5px; }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 1.9rem;
+      }
     }
   </style>
 </head>
@@ -26,12 +170,10 @@
     <span style="font-family: 'Princess Sofia', cursive; font-size: 1.7rem;">🎀</span>
   </h1>
 
-  <form class="complaint-box" method="POST" action="https://formspree.io/f/xblkkpqa" onsubmit="handleSubmit(event)">
+  <form class="complaint-box" method="POST" action="#">
     <textarea name="complaint" placeholder="Type your royal complaint, princess <3" required></textarea>
     <button type="submit">🤬📤</button>
   </form>
-
-  <div class="thank-you" id="thankYouMessage">🎉 Complaint submitted! Thanks, your highness!</div>
 
   <button id="toggle-sound">🔇</button>
 
@@ -63,7 +205,8 @@
     ];
 
     function getRandomSong() {
-      return songs[Math.floor(Math.random() * songs.length)];
+      const randomIndex = Math.floor(Math.random() * songs.length);
+      return songs[randomIndex];
     }
 
     function playRandomSong() {
@@ -89,35 +232,12 @@
 
     audio.addEventListener('ended', playRandomSong);
 
+  
     document.querySelector('.img4').addEventListener('click', () => {
       const kuromiSound = document.getElementById('kuromi-sound');
       kuromiSound.currentTime = 0;
       kuromiSound.play();
     });
-
-    // ✅ Handle form submission with a thank-you message
-    function handleSubmit(event) {
-      event.preventDefault();
-      const form = event.target;
-      const data = new FormData(form);
-
-      fetch(form.action, {
-        method: "POST",
-        body: data,
-        headers: {
-          'Accept': 'application/json'
-        }
-      }).then(response => {
-        if (response.ok) {
-          document.getElementById("thankYouMessage").style.display = "block";
-          form.reset();
-        } else {
-          alert("Oops! Something went wrong.");
-        }
-      }).catch(error => {
-        alert("Oops! There was an error submitting your complaint.");
-      });
-    }
   </script>
 </body>
 </html>
