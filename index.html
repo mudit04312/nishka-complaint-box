@@ -93,52 +93,34 @@
       position: absolute;
       font-family: 'Schoolbell', cursive;
       font-size: 1rem;
-      color: black;
-      background-color: white;
+      color: white;
+      background-color: rgba(255, 105, 180, 0.3);
       padding: 10px 15px;
       border-radius: 20px;
-      border: 2px solid black;
+      backdrop-filter: blur(2px);
       max-width: 160px;
       text-align: center;
       z-index: 3;
     }
 
-    .dialogue::after {
+    .text1::after,
+    .text2::after,
+    .text3::after,
+    .text4::after,
+    .text5::after {
       content: "";
       position: absolute;
-      width: 0;
-      height: 0;
-      border: 10px solid transparent;
-    }
-
-    .text1::after {
       top: 100%;
-      left: 25%;
-      border-top-color: white;
       border-width: 10px;
       border-style: solid;
-      border-color: white transparent transparent transparent;
+      border-color: rgba(255, 105, 180, 0.3) transparent transparent transparent;
     }
-    .text2::after {
-      top: 100%;
-      left: 70%;
-      border-top-color: white;
-    }
-    .text3::after {
-      top: 100%;
-      left: 40%;
-      border-top-color: white;
-    }
-    .text4::after {
-      top: 100%;
-      left: 20%;
-      border-top-color: white;
-    }
-    .text5::after {
-      top: 100%;
-      left: 80%;
-      border-top-color: white;
-    }
+
+    .text1::after { left: 30%; }
+    .text2::after { right: 20%; }
+    .text3::after { left: 50%; transform: translateX(-50%); }
+    .text4::after { left: 40%; }
+    .text5::after { right: 35%; }
 
     .text1 { top: 427.5px; left: 150px; }
     .text2 { top: 535px; left: 250px; }
