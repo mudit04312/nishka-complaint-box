@@ -79,57 +79,13 @@
       position: absolute;
       width: 80px;
       opacity: 0.9;
-      pointer-events: none;
       z-index: 0;
     }
-    .img1 {
-      position: fixed;
-      top: 60%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 100px;
-      opacity: 1;
-      pointer-events: none;
-      z-index: 2;
-    }
-    .img2 {
-      position: fixed;
-      bottom: 15.5px;
-      right: 60px;
-      width: 90px;
-      opacity: 1;
-      pointer-events: none;
-      z-index: 2;
-    }
-    .img3 {
-      position: fixed;
-      bottom: 20px;
-      left: 40px;
-      width: 100px;
-      opacity: 1;
-      pointer-events: none;
-      z-index: 2;
-    }
-    .img4 {
-      position: fixed;
-      top: 60%;
-      left: 5%;
-      transform: translateY(-50%);
-      width: 80px;
-      opacity: 1;
-      pointer-events: none;
-      z-index: 2;
-    }
-    .img5 {
-      position: fixed;
-      top: 60%;
-      left: 80%;
-      transform: translate(-50%, -50%);
-      width: 80px;
-      opacity: 1;
-      pointer-events: none;
-      z-index: 2;
-    }
+    .img1 { top: 60%; left: 50%; transform: translate(-50%, -50%); width: 100px; opacity: 1; z-index: 2; }
+    .img2 { bottom: 15.5px; right: 60px; width: 90px; opacity: 1; z-index: 2; }
+    .img3 { bottom: 20px; left: 40px; width: 100px; opacity: 1; z-index: 2; }
+    .img4 { top: 60%; left: 5%; transform: translateY(-50%); width: 80px; opacity: 1; z-index: 2; }
+    .img5 { top: 60%; left: 80%; transform: translate(-50%, -50%); width: 80px; opacity: 1; z-index: 2; }
 
     .dialogue {
       position: fixed;
@@ -143,7 +99,8 @@
       max-width: 160px;
       text-align: center;
       z-index: 3;
-      pointer-events: none;
+      pointer-events: auto;
+      cursor: move;
     }
     .dialogue::after {
       content: "";
@@ -230,6 +187,41 @@
     });
 
     audio.addEventListener('ended', playRandomSong);
+  </script>
+
+  <!-- DRAGGABLE SCRIPT -->
+  <script>
+    const makeDraggable = (selector) => {
+      document.querySelectorAll(selector).forEach(elem => {
+        elem.setAttribute("draggable", "true");
+
+        elem.addEventListener("dragstart", (e) => {
+          const rect = elem.getBoundingClientRect();
+          e.dataTransfer.setData("text/plain", JSON.stringify({
+            offsetX: e.clientX - rect.left,
+            offsetY: e.clientY - rect.top,
+            id: elem.className
+          }));
+        });
+      });
+
+      document.body.addEventListener("dragover", e => e.preventDefault());
+
+      document.body.addEventListener("drop", e => {
+        e.preventDefault();
+        const data = JSON.parse(e.dataTransfer.getData("text/plain"));
+        const el = document.querySelector("." + data.id.split(" ").join("."));
+        if (el) {
+          el.style.left = (e.clientX - data.offsetX) + "px";
+          el.style.top = (e.clientY - data.offsetY) + "px";
+          el.style.position = "absolute";
+          el.style.transform = "none";
+        }
+      });
+    };
+
+    makeDraggable(".character-img");
+    makeDraggable(".dialogue");
   </script>
 </body>
 </html>
