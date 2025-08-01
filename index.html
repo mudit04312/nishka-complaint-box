@@ -6,9 +6,42 @@
   <title>Nishka's Complaint Box</title>
   <link href="https://fonts.googleapis.com/css2?family=Princess+Sofia&family=Schoolbell&family=Freckle+Face&display=swap" rel="stylesheet">
   <style>
+    @keyframes flipInX {
+      0% {
+        transform: perspective(400px) rotateX(90deg);
+        opacity: 0;
+      }
+      100% {
+        transform: perspective(400px) rotateX(0deg);
+        opacity: 1;
+      }
+    }
+
+    @keyframes slideUp {
+      0% {
+        transform: translateY(100%);
+        opacity: 0;
+      }
+      100% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .flip-title {
+      animation: flipInX 0.6s ease-out both;
+      display: inline-block;
+    }
+
+    .slide-title {
+      animation: slideUp 0.7s ease-out 0.3s both;
+      display: inline-block;
+    }
+
     * {
       box-sizing: border-box;
     }
+
     body {
       position: relative;
       background-color: #43001A;
@@ -20,6 +53,7 @@
       align-items: center;
       overflow-x: hidden;
     }
+
     h1 {
       font-family: 'Princess Sofia', cursive;
       color: #ff69b4;
@@ -27,6 +61,7 @@
       margin-bottom: 20px;
       text-align: center;
     }
+
     .complaint-box {
       background-color: rgba(67, 0, 26, 0.3);
       border: 2px solid #ff69b4;
@@ -38,6 +73,7 @@
       backdrop-filter: blur(2px);
       z-index: 1;
     }
+
     textarea {
       width: 100%;
       height: 100px;
@@ -50,10 +86,12 @@
       font-size: 1rem;
       resize: none;
     }
+
     textarea::placeholder {
       font-size: 1rem;
       color: #ccc;
     }
+
     button[type="submit"] {
       margin: 15px auto 0;
       display: block;
@@ -65,6 +103,7 @@
       font-size: 1rem;
       cursor: pointer;
     }
+
     #toggle-sound {
       position: fixed;
       bottom: 20px;
@@ -83,6 +122,7 @@
       z-index: 2;
       cursor: pointer;
     }
+
     .img1 { top: 442.5px; left: 140px; width: 120px; }
     .img2 { top: 612px; left: 226px; width: 90px; }
     .img3 { top: 590px; left: 43.8955px; width: 100px; }
@@ -103,52 +143,22 @@
       z-index: 3;
     }
 
-    .text1::after {
-  content: "";
-  position: absolute;
-  top: 100%;
-  border-width: 10px 3px 0 3px;
-  border-style: solid;
-  border-color: rgba(255, 105, 180, 0.3) transparent transparent transparent;
-}
-    .text3::after {
-      content: "";
-      position: absolute;
-      top: 100%;
-      border-width: 10px;
-      border-style: solid;
-      border-color: rgba(255, 105, 180, 0.3) transparent transparent transparent;
-    }
-    .text2::after {
-      content: "";
-      position: absolute;
-      top: 100%;
-      border-width: 18px 4px 0 4px;
-      border-style: solid;
-      border-color: rgba(255, 105, 180, 0.3) transparent transparent transparent;
-    }
+    .text1::after,
+    .text2::after,
+    .text3::after,
+    .text4::after,
     .text5::after {
-  content: "";
-  position: absolute;
-  top: 100%;
-  border-width: 20px 4px 0 4px;
-  border-style: solid;
-  border-color: rgba(255, 105, 180, 0.3) transparent transparent transparent;
-}
-    .text4::after {
-  content: "";
-  position: absolute;
-  top: 100%;
-  border-width: 18px 5px 0 5px;
-  border-style: solid;
-  border-color: rgba(255, 105, 180, 0.3) transparent transparent transparent;
-}
+      content: "";
+      position: absolute;
+      top: 100%;
+      border-style: solid;
+    }
 
-    .text1::after { left: 60%; }
-    .text2::after { left: 25%; }
-    .text3::after { left: 50%; transform: translateX(-50%); }
-    .text4::after { left: 17.5%; }
-    .text5::after { right: 22.25%; }
+    .text1::after { border-width: 10px 3px 0 3px; border-color: rgba(255, 105, 180, 0.3) transparent transparent transparent; left: 60%; }
+    .text2::after { border-width: 18px 4px 0 4px; border-color: rgba(255, 105, 180, 0.3) transparent transparent transparent; left: 25%; }
+    .text3::after { border-width: 10px; border-color: rgba(255, 105, 180, 0.3) transparent transparent transparent; left: 50%; transform: translateX(-50%); }
+    .text4::after { border-width: 18px 5px 0 5px; border-color: rgba(255, 105, 180, 0.3) transparent transparent transparent; left: 17.5%; }
+    .text5::after { border-width: 20px 4px 0 4px; border-color: rgba(255, 105, 180, 0.3) transparent transparent transparent; right: 22.25%; }
 
     .text1 { top: 419px; left: 150px; }
     .text2 { top: 540px; left: 210px; }
@@ -165,10 +175,12 @@
 </head>
 <body>
   <h1>
-  <span style="font-family: 'Princess Sofia', cursive; font-size: 1.9rem;">🎀 Nishka's</span><span style="font-family: 'Freckle Face'; font-size: 1.5rem;"> Complaint Box </span><span style="font-family: 'Princess Sofia', cursive; font-size: 1.9rem;">🎀
-  </span>
+    <span class="flip-title" style="font-family: 'Princess Sofia', cursive; font-size: 1.9rem;">🎀 Nishka's</span>
+    <span class="slide-title" style="font-family: 'Freckle Face'; font-size: 1.5rem;"> Complaint Box </span>
+    <span class="flip-title" style="font-family: 'Princess Sofia', cursive; font-size: 1.9rem;">🎀</span>
   </h1>
-<form class="complaint-box" method="POST" action="#">
+
+  <form class="complaint-box" method="POST" action="#">
     <textarea name="complaint" placeholder="Type your royal complaint, princess <3" required></textarea>
     <button type="submit">🤬📤</button>
   </form>
