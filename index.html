@@ -4,90 +4,90 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
   <title>Nishka's Complaint Box</title>
-  <link rel="icon" href="favicon.png" type="image/png">
-  <link href="https://fonts.googleapis.com/css2?family=Princess+Sofia&family=Schoolbell&family=Freckle+Face&family=Slackey&display=swap" rel="stylesheet">
+  <link rel="icon" href="favicon.png" type="image/png" />
+  <link href="https://fonts.googleapis.com/css2?family=Princess+Sofia&family=Slackey&display=swap" rel="stylesheet" />
   <style>
-    /* (All your original CSS remains unchanged) */
-    /* Copy-pasted from your message — not shown here for brevity */
+    body {
+      font-family: 'Slackey', cursive;
+      text-align: center;
+      background: pink;
+      padding: 1rem;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    h1 span {
+      font-family: 'Princess Sofia', cursive;
+      font-size: 2.2rem;
+    }
+
+    .complaint-box {
+      margin: 2rem 0;
+    }
+
+    textarea {
+      padding: 0.5rem;
+      width: 250px;
+      height: 80px;
+      border-radius: 0.5rem;
+      border: 2px solid #000;
+      font-family: monospace;
+      font-size: 1rem;
+      resize: none;
+    }
+
+    button {
+      font-size: 1.3rem;
+      margin-left: 0.5rem;
+      cursor: pointer;
+      border: none;
+      padding: 0.3rem 0.6rem;
+      border-radius: 0.5rem;
+      background: #fff;
+    }
+
+    .characters {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 1rem;
+      justify-items: center;
+      margin-top: 2rem;
+    }
+
+    .character-img {
+      width: 100px;
+      border-radius: 1rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    }
+
+    .mute-button {
+      font-size: 1.2rem;
+      margin-top: 1rem;
+    }
   </style>
 </head>
 <body>
-  <h1>
-    <span style="font-family: 'Princess Sofia', cursive; font-size: 1.7rem;">🎀 Nishka's</span>
-    <span style="font-family: 'Slackey', cursive; font-size: 1.25rem;"> Complaint Box </span>
-    <span style="font-family: 'Princess Sofia', cursive; font-size: 1.7rem;">🎀</span>
-  </h1>
+  <h1>🎀 <span>Nishka's</span> Complaint Box 🎀</h1>
 
-  <!-- ✅ Fixed action URL to your Formspree endpoint -->
+  <!-- ✅ Working Formspree form -->
   <form class="complaint-box" method="POST" action="https://formspree.io/f/xblkkpqa">
     <textarea name="complaint" placeholder="Type your royal complaint, princess <3" required></textarea>
     <button type="submit">🤬📤</button>
   </form>
 
-  <button id="toggle-sound">🔇</button>
+  <!-- 🔇 Mute Button (not functional unless JS added) -->
+  <button class="mute-button">🔇</button>
 
-  <!-- All your images remain unchanged -->
-  <img src="Cinnamoroll.png" class="character-img img1" alt="Cinnamoroll">
-  <img src="Pompompurin.png" class="character-img img2" alt="Pompompurin">
-  <img src="hellokitty.png" class="character-img img3" alt="Hello Kitty">
-  <img src="kuromi.png" class="character-img img4" alt="Kuromi">
-  <img src="mymelody.png" class="character-img img5" alt="My Melody">
-
-  <div class="dialogue text1">Hi, Nishka!</div>
-  <div class="dialogue text2">Tap here to play some music</div>
-  <div class="dialogue text3">Oh, welcome back... I guess</div>
-  <div class="dialogue text4">It's time to act like an evil bitch, Nishka</div>
-  <div class="dialogue text5">What did he do this time?</div>
-
-  <!-- Audio section -->
-  <audio id="bg-audio" autoplay muted preload="auto"></audio>
-  <audio id="kuromi-sound" src="https://www.dropbox.com/scl/fi/srpl3kwjojeq0y80g1zdy/Kuromi.mp3?rlkey=p6q6e9fpruggeojgw8rtvalgq&raw=1" preload="auto"></audio>
-
-  <script>
-    const audio = document.getElementById('bg-audio');
-    const toggleButton = document.getElementById('toggle-sound');
-
-    const songs = [
-      'https://www.dropbox.com/scl/fi/d7fhsnuinvk2hdexfqrml/Connie-Francis-Pretty-Little-Baby-Official-Audio.mp3?rlkey=k1kyk3s6vfieqgr5itpvw4w7v&raw=1',
-      'https://www.dropbox.com/scl/fi/ab1yk30e5p01eh2gm3fqq/FNAF-Security-Breach-OST_-Daycare-Theme.mp3?rlkey=671ecd6rmk1i3pqvjhtbrs7od&raw=1',
-      'https://www.dropbox.com/scl/fi/xae54vgewwtzfdldounrs/blue-instrumental.mp3?rlkey=zv8a7m723obj6i8k18giproxe&raw=1',
-      'https://www.dropbox.com/scl/fi/u9a3obvxmcu8onrswsbmj/the-cat-from-ipanema.mp3?rlkey=sku5g7zeie5jfrbv85ux31cxr&raw=1',
-      'https://www.dropbox.com/scl/fi/1KF02wcoKUV1nb3zfIIyOgksfvC-9on5G/tsundere.mp3?rlkey=z3o2zzrjnpw8n5khgg1h8j1d8&raw=1'
-    ];
-
-    function getRandomSong() {
-      const randomIndex = Math.floor(Math.random() * songs.length);
-      return songs[randomIndex];
-    }
-
-    function playRandomSong() {
-      audio.src = getRandomSong();
-      audio.play();
-    }
-
-    toggleButton.addEventListener('click', () => {
-      if (audio.muted) {
-        audio.muted = false;
-        toggleButton.textContent = '🔊';
-        audio.play();
-      } else {
-        audio.muted = true;
-        toggleButton.textContent = '🔇';
-      }
-    });
-
-    window.addEventListener('DOMContentLoaded', () => {
-      audio.src = getRandomSong();
-      audio.play();
-    });
-
-    audio.addEventListener('ended', playRandomSong);
-
-    document.querySelector('.img4').addEventListener('click', () => {
-      const kuromiSound = document.getElementById('kuromi-sound');
-      kuromiSound.currentTime = 0;
-      kuromiSound.play();
-    });
-  </script>
+  <!-- 💖 Character Images -->
+  <div class="characters">
+    <img src="hellokitty.png" class="character-img" alt="Hello Kitty" />
+    <img src="mymelody.png" class="character-img" alt="My Melody" />
+    <img src="pompompurin.png" class="character-img" alt="Pompompurin" />
+    <img src="cinnamoroll.png" class="character-img" alt="Cinnamoroll" />
+    <img src="kuromi.png" class="character-img" alt="Kuromi" />
+  </div>
 </body>
 </html>
