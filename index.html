@@ -130,6 +130,45 @@
       pointer-events: none;
       z-index: 2;
     }
+
+    /* 🗨️ Speech Bubbles */
+    .dialogue {
+      position: fixed;
+      font-family: 'Schoolbell', cursive;
+      font-size: 1rem;
+      color: white;
+      background-color: rgba(255, 105, 180, 0.2);
+      padding: 6px 10px;
+      border-radius: 10px;
+      backdrop-filter: blur(1.5px);
+      max-width: 140px;
+      text-align: center;
+      pointer-events: none;
+      z-index: 3;
+    }
+    .text1 {
+      top: calc(60% - 90px); /* Cinnamoroll */
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .text2 {
+      bottom: 120px; /* Pompompurin */
+      right: 60px;
+    }
+    .text3 {
+      bottom: 130px; /* Hello Kitty */
+      left: 40px;
+    }
+    .text4 {
+      top: calc(60% - 80px); /* Kuromi */
+      left: 5%;
+    }
+    .text5 {
+      top: calc(60% - 80px); /* My Melody */
+      left: 80%;
+      transform: translateX(-50%);
+    }
+
     @media (max-width: 480px) {
       h1 {
         font-size: 2rem;
@@ -153,6 +192,13 @@
   <img src="hellokitty.png" class="character-img img3" alt="Hello Kitty">
   <img src="kuromi.png" class="character-img img4" alt="Kuromi">
   <img src="mymelody.png" class="character-img img5" alt="My Melody">
+
+  <!-- ✨ Dialogue Texts -->
+  <div class="dialogue text1">HI, Nishka!</div>
+  <div class="dialogue text2">Here, play some music</div>
+  <div class="dialogue text3">Oh, welcome back... I guess</div>
+  <div class="dialogue text4">Time to act like an evil bitch</div>
+  <div class="dialogue text5">What did he do this time?</div>
 
   <audio id="bg-audio" autoplay muted preload="auto"></audio>
 
