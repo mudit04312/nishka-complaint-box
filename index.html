@@ -82,7 +82,16 @@
       pointer-events: none;
       z-index: 0;
     }
-    .img1 { top: 50px; left: 30px; }
+    .img1 {
+  position: fixed;
+  top: 50%;
+  left: 10%;
+  transform: translateY(-50%);
+  width: 80px;
+  opacity: 0.9;
+  pointer-events: none;
+  z-index: 2;
+}
     .img2 {
   position: fixed;       
   bottom: 20px;
@@ -104,9 +113,26 @@
   z-index: 2;
 }
 
-    .img4 { top: 250px; right: 120px; }
-    .img5 { bottom: 50px; right: 80px; }
-
+    .img4 {
+  position: fixed;
+  top: 45%;
+  right: 10%;
+  transform: translateY(-50%);
+  width: 80px;
+  opacity: 0.9;
+  pointer-events: none;
+  z-index: 2;
+}
+    .img5 {
+  position: fixed;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80px;
+  opacity: 0.9;
+  pointer-events: none;
+  z-index: 2;
+}
     @media (max-width: 480px) {
       h1 {
         font-size: 2rem;
